@@ -107,157 +107,107 @@ export interface Page {
   publishedAt?: string | null;
   title: string;
   type?: ("page" | "home") | null;
-  pageLayout?:
-    | (
-        | {
-            columns?:
-              | {
-                  content?:
-                    | (
-                        | {
-                            position?: ("default" | "fullscreen") | null;
-                            media: string | Media;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: "media-block";
-                          }
-                        | {
-                            text?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ("ltr" | "rtl") | null;
-                                format:
-                                  | "left"
-                                  | "start"
-                                  | "center"
-                                  | "right"
-                                  | "end"
-                                  | "justify"
-                                  | "";
-                                indent: number;
-                                version: number;
-                              };
+  hero?: {
+    slides?:
+      | {
+          image?: string | Media | null;
+          primaryText?: string | null;
+          secondaryText?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  layout: (
+    | {
+        columns?:
+          | {
+              content?:
+                | (
+                    | {
+                        position?: ("default" | "fullscreen") | null;
+                        media: string | Media;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: "media-block";
+                      }
+                    | {
+                        text?: {
+                          root: {
+                            type: string;
+                            children: {
+                              type: string;
+                              version: number;
                               [k: string]: unknown;
-                            } | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: "text";
-                          }
-                      )[]
-                    | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: "columnsBlock";
-          }
-        | {
-            position?: ("default" | "fullscreen") | null;
-            media: string | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: "media-block";
-          }
-        | {
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ("ltr" | "rtl") | null;
-                format:
-                  | "left"
-                  | "start"
-                  | "center"
-                  | "right"
-                  | "end"
-                  | "justify"
-                  | "";
-                indent: number;
-                version: number;
-              };
+                            }[];
+                            direction: ("ltr" | "rtl") | null;
+                            format:
+                              | "left"
+                              | "start"
+                              | "center"
+                              | "right"
+                              | "end"
+                              | "justify"
+                              | "";
+                            indent: number;
+                            version: number;
+                          };
+                          [k: string]: unknown;
+                        } | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: "text";
+                      }
+                  )[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: "columnsBlock";
+      }
+    | {
+        position?: ("default" | "fullscreen") | null;
+        media: string | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: "media-block";
+      }
+    | {
+        text?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
               [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: "text";
-          }
-      )[]
-    | null;
-  homeLayout?:
-    | (
-        | {
-            columns?:
-              | {
-                  content?:
-                    | (
-                        | {
-                            position?: ("default" | "fullscreen") | null;
-                            media: string | Media;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: "media-block";
-                          }
-                        | {
-                            text?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: string;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ("ltr" | "rtl") | null;
-                                format:
-                                  | "left"
-                                  | "start"
-                                  | "center"
-                                  | "right"
-                                  | "end"
-                                  | "justify"
-                                  | "";
-                                indent: number;
-                                version: number;
-                              };
-                              [k: string]: unknown;
-                            } | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: "text";
-                          }
-                      )[]
-                    | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: "columnsBlock";
-          }
-        | {
-            images?:
-              | {
-                  image?: string | Media | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: "heroBlock";
-          }
-      )[]
-    | null;
+            }[];
+            direction: ("ltr" | "rtl") | null;
+            format:
+              | "left"
+              | "start"
+              | "center"
+              | "right"
+              | "end"
+              | "justify"
+              | "";
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: "text";
+      }
+  )[];
   slug?: string | null;
   tenant?: (string | null) | Tenant;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: string | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ("draft" | "published") | null;
