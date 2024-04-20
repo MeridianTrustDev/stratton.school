@@ -7,18 +7,17 @@ import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import DesktopNavigation from "./header/DesktopNavigation";
 import MobileNavigation from "./header/MobileNavigation";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function SiteHeader({ header }: { header: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isShowing, setIsShowing] = useState(false);
   const primaryNavItems = header.primaryNavigation.navItems;
 
+  const path = usePathname();
+
   return (
-    <header className="fixed z-20 w-full">
+    <header className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-full")}>
       <nav
         className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -47,11 +46,7 @@ export default function SiteHeader({ header }: { header: any }) {
             </button>
           </div>
         )}
-        <DesktopNavigation
-          primaryNavItems={primaryNavItems}
-          isShowing={isShowing}
-          setIsShowing={setIsShowing}
-        />
+        <DesktopNavigation primaryNavItems={primaryNavItems} />
       </nav>
       <MobileNavigation
         header={header}

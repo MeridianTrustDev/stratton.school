@@ -51,7 +51,7 @@ export default function MobileNavigation({
           <div className="-my-6 divide-y divide-gray-500/10">
             {primaryNavItems.length > 0 &&
               primaryNavItems.map((item: any) => (
-                <div className="space-y-2 py-6">
+                <div key={item.id} className="space-y-2 py-6">
                   {item.children.length > 0 ? (
                     item.children.map((child: any) => (
                       <Disclosure as="div" className="-mx-3">

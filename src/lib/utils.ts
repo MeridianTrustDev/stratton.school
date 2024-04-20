@@ -9,7 +9,6 @@ export function navItemUrl(item: any) {
   if (item.type === "parent") {
     return "#";
   } else if (item.type === "reference") {
-    console.log(item);
     return `/${item.reference.slug}`;
   } else if (item.type === "custom") {
     return item.url;

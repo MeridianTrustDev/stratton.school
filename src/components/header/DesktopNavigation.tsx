@@ -7,12 +7,8 @@ import NavigationItem from "./NavigationItem";
 
 export default function DesktopNavigation({
   primaryNavItems,
-  isShowing,
-  setIsShowing,
 }: {
   primaryNavItems: any;
-  isShowing: boolean;
-  setIsShowing: (value: boolean) => void;
 }) {
   return (
     <Popover.Group className="hidden lg:flex flex-wrap justify-end lg:gap-x-12">
