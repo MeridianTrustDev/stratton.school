@@ -1,6 +1,19 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
+}
+
+export function navItemUrl(item: any) {
+  if (item.type === "parent") {
+    return "#";
+  } else if (item.type === "reference") {
+    console.log(item);
+    return `/${item.reference.slug}`;
+  } else if (item.type === "custom") {
+    return item.url;
+  } else {
+    return "#";
+  }
 }

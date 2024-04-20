@@ -22,7 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const response = await payload.get(`/api/headers?depth=1`);
+  const response = await payload.get(`/api/headers?depth=2`);
 
   const siteHeader: PayloadHeader = response.data.docs[0];
 

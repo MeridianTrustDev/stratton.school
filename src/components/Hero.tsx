@@ -7,7 +7,6 @@ import Image from "next/image";
 import React from "react";
 
 export default function Hero({ slides }: any) {
-  console.log(slides);
   return (
     <Splide
       className="relative h-full flex"

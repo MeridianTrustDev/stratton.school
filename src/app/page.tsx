@@ -33,7 +33,6 @@ export default async function Home({ params: { slug = "home" } }) {
     return;
   }
 
-  console.log(page);
   return (
     <>
       <div className="h-[99vh] w-[100vw] relative">
