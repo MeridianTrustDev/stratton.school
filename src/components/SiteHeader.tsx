@@ -22,8 +22,8 @@ export default function SiteHeader({ header }: { header: any }) {
         className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="hidden lg:flex">
-          <Link href="#" className="-m-1.5 p-1.5">
+        <div className="flex">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Stratton School</span>
             <Image
               src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${header.logo.url}`}
@@ -35,7 +35,7 @@ export default function SiteHeader({ header }: { header: any }) {
           </Link>
         </div>
         {!mobileMenuOpen && (
-          <div className="flex w-full justify-end lg:hidden">
+          <div className="flex w-full justify-end md:hidden">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"

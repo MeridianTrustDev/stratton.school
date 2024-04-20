@@ -22,7 +22,7 @@ export default function Hero({ slides }: any) {
       }}
     >
       {slides.map((slide: any, index: any) => (
-        <SplideSlide key={index} className={"h-full object-cover bg-black"}>
+        <SplideSlide key={index} className={"h-full bg-black"}>
           <div className="absolute flex items-end flex-col right-16 bottom-52 text-white z-20 uppercase antialiased">
             <h1 className="font-bold text-6xl text-right">
               {slide.primaryText}
@@ -35,7 +35,7 @@ export default function Hero({ slides }: any) {
           <div className="absolute z-10 h-screen w-screen bg-gradient-to-b from-black to-transparent"></div>
           <div className="bg-black opacity-90 h-full">
             <Image
-              className="relative h-full bg-cover"
+              className="relative h-full bg-cover object-cover"
               src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${slide.image.url}`}
               alt={slide.image.alt}
               width={slide.image.width}

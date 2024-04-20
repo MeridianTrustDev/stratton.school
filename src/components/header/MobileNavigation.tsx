@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, navItemUrl } from "@/lib/utils";
 
 export default function MobileNavigation({
   header,
@@ -48,53 +48,52 @@ export default function MobileNavigation({
           </button>
         </div>
         <div className="mt-6 flow-root">
-          <div className="-my-6 divide-y divide-gray-500/10">
-            {primaryNavItems.length > 0 &&
-              primaryNavItems.map((item: any) => (
-                <div key={item.id} className="space-y-2 py-6">
+          {primaryNavItems.length > 0 &&
+            primaryNavItems.map((item: any) => {
+              item.url = navItemUrl(item);
+              return (
+                <div key={item.id}>
                   {item.children.length > 0 ? (
-                    item.children.map((child: any) => (
-                      <Disclosure as="div" className="-mx-3">
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
-                              {item.label}
-                              <ChevronDown
-                                className={cn(
-                                  open ? "rotate-180" : "",
-                                  "h-5 w-5 flex-none"
-                                )}
-                                aria-hidden="true"
-                              />
-                            </Disclosure.Button>
-                            <Disclosure.Panel className="mt-2 space-y-2">
-                              {primaryNavItems.length > 0 &&
-                                primaryNavItems.map((item: any) => (
-                                  <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                  >
-                                    {item.name}
-                                  </Disclosure.Button>
-                                ))}
-                            </Disclosure.Panel>
-                          </>
-                        )}
-                      </Disclosure>
-                    ))
+                    <Disclosure as="div">
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
+                            {item.label}
+                            <ChevronDown
+                              className={cn(
+                                open ? "rotate-180" : "",
+                                "h-5 w-5 flex-none"
+                              )}
+                              aria-hidden="true"
+                            />
+                          </Disclosure.Button>
+                          <Disclosure.Panel className="mt-2 space-y-2">
+                            {item.children.length > 0 &&
+                              item.children.map((child: any) => (
+                                <Link
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  href={child.url}
+                                  className="flex w-full items-center justify-between rounded-lg py-2 pl-8 pr-3.5 text-sm font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
                   ) : (
-                    <a
-                      href="#"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900"
+                    <Link
+                      onClick={() => setMobileMenuOpen(false)}
+                      href={item.url}
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900"
                     >
-                      Log in
-                    </a>
+                      {item.label}
+                    </Link>
                   )}
                 </div>
-              ))}
-          </div>
+              );
+            })}
         </div>
       </Dialog.Panel>
     </Dialog>

@@ -11,7 +11,7 @@ export default function DesktopNavigation({
   primaryNavItems: any;
 }) {
   return (
-    <Popover.Group className="hidden lg:flex flex-wrap justify-end lg:gap-x-12">
+    <Popover.Group className="hidden md:flex flex-wrap justify-end md:gap-x-12 md:gap-y-2">
       {primaryNavItems.length > 0 &&
         primaryNavItems.map((item: any) => (
           <NavigationItem key={item.id} item={item} />
