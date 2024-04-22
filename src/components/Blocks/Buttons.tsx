@@ -29,7 +29,7 @@ export default function Buttons({ buttons }: any) {
                 width={button.backgroundImage.width}
                 height={button.backgroundImage.height}
                 alt={button.backgroundImage.alt}
-                className="h-full w-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+                className="h-full w-full object-cover "
               />
             </Link>
           );
