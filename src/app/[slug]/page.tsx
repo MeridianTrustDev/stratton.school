@@ -79,29 +79,29 @@ export async function generateMetadata({
   return {
     title: page.meta.title || page.title,
     description: page.meta.description,
-    openGraph: {
-      images: [
-        ...(page.meta.image
-          ? [
-              {
-                url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`,
-                width: page.meta.image.width,
-                height: page.meta.image.height,
-                alt: page.meta.image.alt,
-              },
-            ]
-          : page.featuredImage
-          ? [
-              {
-                url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`,
-                width: page.featuredImage.width,
-                height: page.featuredImage.height,
-                alt: page.featuredImage.alt,
-              },
-            ]
-          : []),
-      ],
-    },
+    // openGraph: {
+    //   images: [
+    //     ...(page.meta.image
+    //       ? [
+    //           {
+    //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`,
+    //             width: page.meta.image.width,
+    //             height: page.meta.image.height,
+    //             alt: page.meta.image.alt,
+    //           },
+    //         ]
+    //       : page.featuredImage
+    //       ? [
+    //           {
+    //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`,
+    //             width: page.featuredImage.width,
+    //             height: page.featuredImage.height,
+    //             alt: page.featuredImage.alt,
+    //           },
+    //         ]
+    //       : []),
+    //   ],
+    // },
   };
 }
 
