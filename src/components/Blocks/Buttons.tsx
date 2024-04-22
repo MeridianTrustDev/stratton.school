@@ -22,7 +22,7 @@ export default function Buttons({ buttons }: any) {
                   background: `linear-gradient(90deg, ${button.backgroundColour} 20%, rgba(0, 0, 0, 0) 100%`,
                   backgroundBlendMode: `overlay, normal`,
                 }}
-                className="z-[5] w-full h-full absolute "
+                className="z-[5] w-full h-full absolute"
               />
               <Image
                 loading="lazy"
