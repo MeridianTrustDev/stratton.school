@@ -19,8 +19,7 @@ export default function Buttons({ buttons }: any) {
               </span>
               <div
                 style={{
-                  background: `linear-gradient(90deg, ${button.backgroundColour} 20%, rgba(0, 0, 0, 0) 100%`,
-                  backgroundBlendMode: `overlay, normal`,
+                  background: `linear-gradient(to right, ${button.backgroundColour} 20%, rgba(0, 0, 0, 0) 100%`,
                 }}
                 className="z-[5] w-full h-full absolute"
               />
