@@ -3,6 +3,7 @@ import React from "react";
 import qs from "qs";
 import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
+import RenderBlocks from "@/components/Blocks/RenderBlocks";
 
 export default async function Home({ params: { slug = "home" } }) {
   let page = null;
@@ -25,7 +26,7 @@ export default async function Home({ params: { slug = "home" } }) {
       { addQueryPrefix: true }
     );
 
-    const response = await payload.get(`/api/pages${stringifiedQuery}`);
+    const response = await payload.get(`/api/pages${stringifiedQuery}&depth=5`);
 
     page = response.data.docs[0];
   } catch (error) {
@@ -39,6 +40,7 @@ export default async function Home({ params: { slug = "home" } }) {
         <Hero slides={page.hero.slides} />
       </div>
       <Separator className="h-[10px] bg-[#D9B21D]" />
+      <RenderBlocks layout={page.layout} />
     </>
   );
 }

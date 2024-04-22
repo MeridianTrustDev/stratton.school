@@ -4,7 +4,6 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import DesktopNavigation from "./header/DesktopNavigation";
 import MobileNavigation from "./header/MobileNavigation";
 import { usePathname } from "next/navigation";
