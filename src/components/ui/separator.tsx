@@ -14,23 +14,17 @@ const Separator = React.forwardRef<
     { className, orientation = "horizontal", decorative = true, ...props },
     ref
   ) => (
-    <div className="flex items-end justify-center">
-      <SeparatorPrimitive.Root
-        ref={ref}
-        decorative={decorative}
-        orientation={orientation}
-        className={cn(
-          "shrink-0 bg-border",
-          orientation === "horizontal" ? "w-full" : "h-full",
-          className
-        )}
-        {...props}
-      />
-      <div className="absolute flex flex-col items-center p-4 w-10 h-20 bg-[#4EBCC1]">
-        <Mouse size={30} className="text-white" />
-        <ChevronsDown size={25} className="text-white" />
-      </div>
-    </div>
+    <SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-border",
+        orientation === "horizontal" ? "w-full" : "h-full",
+        className
+      )}
+      {...props}
+    />
   )
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;

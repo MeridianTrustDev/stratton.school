@@ -4,8 +4,14 @@ import qs from "qs";
 import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
 import RenderBlocks from "@/components/Blocks/RenderBlocks";
+import { ChevronsDown, Mouse } from "lucide-react";
+import { Metadata } from "next";
 
-export default async function Home({ params: { slug = "home" } }) {
+export const metadata: Metadata = {
+  title: "Home",
+};
+
+export default async function Home() {
   let page = null;
   try {
     const query = {
@@ -15,8 +21,6 @@ export default async function Home({ params: { slug = "home" } }) {
       "tenant.name": {
         equals: "Stratton School",
       },
-      // This query could be much more complex
-      // and QS would handle it beautifully
     };
 
     const stringifiedQuery = qs.stringify(
@@ -26,9 +30,11 @@ export default async function Home({ params: { slug = "home" } }) {
       { addQueryPrefix: true }
     );
 
-    const response = await payload.get(`/api/pages${stringifiedQuery}&depth=5`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=5`
+    );
 
-    page = response.data.docs[0];
+    page = (await response.json()).docs[0];
   } catch (error) {
     console.log(error);
     return;
@@ -39,7 +45,13 @@ export default async function Home({ params: { slug = "home" } }) {
       <div className="h-[99vh] w-[100vw] relative">
         <Hero slides={page.hero.slides} />
       </div>
-      <Separator className="h-[10px] bg-[#D9B21D]" />
+      <div className="flex items-end justify-center">
+        <Separator className="h-[10px] bg-[#D9B21D]" />
+        <div className="absolute flex flex-col items-center p-4 w-10 h-20 bg-[#4EBCC1]">
+          <Mouse size={30} className="text-white" />
+          <ChevronsDown size={25} className="text-white" />
+        </div>
+      </div>
       <RenderBlocks layout={page.layout} />
     </>
   );
