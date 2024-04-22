@@ -57,7 +57,10 @@ export default async function Events() {
         <div className="flex w-full">
           {events.map((event: any) => {
             return (
-              <div className="bg-[#4EBCC1] w-52 h-44 p-4 flex flex-col justify-between">
+              <div
+                key={event.id}
+                className="bg-[#4EBCC1] w-52 h-44 p-4 flex flex-col justify-between"
+              >
                 <h3 className="text-white font-bold text-3xl uppercase">
                   {event.title}
                 </h3>

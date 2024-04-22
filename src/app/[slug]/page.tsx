@@ -39,7 +39,7 @@ export default async function Page({ params: { slug } }: Props) {
   }
 
   return (
-    <div className="max-w-8xl px-4 py-2">
+    <div className="max-w-7xl px-4 py-2 w-full">
       <h1 className="text-4xl font-bold uppercase">{page.title}</h1>
       <RenderBlocks layout={page.layout} />
     </div>

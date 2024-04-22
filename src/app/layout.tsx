@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col ${poppins.variable} w-screen overflow-x-hidden`}
+        className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden`}
       >
         <SiteHeader header={siteHeader} />
         {children}

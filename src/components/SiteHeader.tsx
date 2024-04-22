@@ -18,7 +18,7 @@ export default function SiteHeader({ header }: { header: any }) {
   return (
     <header className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-full")}>
       <nav
-        className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className="flex">

@@ -17,7 +17,7 @@ export default function Buttons({ buttons }: any) {
                   ? `/${button.reference.slug}`
                   : button.url
               }
-              className="text-white group uppercase w-full h-32 font-bold text-lg relative bg-black"
+              className="text-white group uppercase w-full h-32 hover:scale-[102%] transition-all ease-in-out font-bold text-lg relative bg-black"
             >
               <span className="absolute z-10 bottom-0 left-0 text-2xl md:text-3xl transition-all p-2 w-3/4">
                 {button.text}
