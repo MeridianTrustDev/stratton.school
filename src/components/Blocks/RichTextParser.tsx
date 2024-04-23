@@ -13,7 +13,9 @@ export default function ({
   if (!content?.root?.children) return "";
 
   return (
-    <div className={`${[className].filter(Boolean).join(" ")} richText`}>
+    <div
+      className={`${[className].filter(Boolean).join(" ")} richText font-light`}
+    >
       {serializeLexicalRichText({
         children: content.root.children,
         customClassNames,

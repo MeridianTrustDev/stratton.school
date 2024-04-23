@@ -42,7 +42,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="h-[99vh] w-[100vw] relative">
+      <div className="h-[50vh] md:h-[99vh] w-[100vw] relative">
         <Hero slides={page.hero.slides} />
       </div>
       <div className="flex w-full items-end justify-center">

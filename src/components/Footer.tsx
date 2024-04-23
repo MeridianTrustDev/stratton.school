@@ -1,0 +1,57 @@
+import { getFooter } from "@/lib/payload/footer";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+export default async function Footer() {
+  const footer = await getFooter();
+
+  return (
+    <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4">
+      <div className="flex flex-row w-full justify-center gap-12">
+        <Image
+          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}
+          width={footer.logo.width}
+          height={footer.logo.height}
+          alt={footer.logo.alt}
+          className="object-contain w-64 md:order-2"
+        />
+        <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-1 md:text-right flex-1">
+          <h4 className="underline underline-offset-4">Contact Us</h4>
+          <div className="text-sm font-bold">
+            <a href={`tel:${footer.telephone}`}>
+              <p>{footer.telephone}</p>
+            </a>
+            <a href={`mailto:${footer.email}`}>{footer.email}</a>
+            <p>{footer.address}</p>
+          </div>
+        </div>
+        <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-3 md:text-left flex-1">
+          <h4 className="underline underline-offset-4">Quick Links</h4>
+          <ul className="text-sm font-bold">
+            {footer.primaryNavigation.navItems.map((link: any) => (
+              <li key={link.id}>
+                <Link
+                  href={
+                    link.type === "custom"
+                      ? link.url
+                      : `${process.env.NEXT_PUBLIC_BASE_URL}${link.reference.slug}`
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="text-center uppercase text-xs w-[700px]">
+        <p className="text-white opacity-50">
+          {footer.disclaimer.split("\n").map((str: any) => (
+            <p>{str}</p>
+          ))}
+        </p>
+      </div>
+    </div>
+  );
+}

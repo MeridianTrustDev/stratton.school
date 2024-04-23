@@ -3,6 +3,7 @@ import React from "react";
 import qs from "qs";
 import RenderBlocks from "@/components/Blocks/RenderBlocks";
 import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
 type Props = {
   params: { slug: string };
@@ -39,9 +40,25 @@ export default async function Page({ params: { slug } }: Props) {
   }
 
   return (
-    <div className="max-w-7xl px-4 py-2 w-full">
-      <h1 className="text-4xl font-bold uppercase">{page.title}</h1>
-      <RenderBlocks layout={page.layout} />
+    <div className="max-w-7xl px-4 py-8 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4">
+      <div className="w-full md:w-1/4 flex justify-center max-h-64">
+        {page.featuredImage && (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`}
+            width={page.featuredImage.width}
+            height={page.featuredImage.height}
+            alt={page.featuredImage.alt}
+            className="object-contain"
+          />
+        )}
+        {/* <Sidebar /> */}
+      </div>
+      <div className="w-full md:w-3/4">
+        <h1 className="text-4xl font-bold uppercase text-center md:text-left">
+          {page.title}
+        </h1>
+        <RenderBlocks layout={page.layout} />
+      </div>
     </div>
   );
 }

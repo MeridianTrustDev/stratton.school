@@ -41,7 +41,7 @@ export default function NavigationItem({ item }: { item: any }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute -right-8 top-full z-10 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
+            <Popover.Panel className="absolute -right-8 top-full z-10 w-56 rounded-xl bg-white p-2 shadow-lg">
               {item.children.length > 0 &&
                 item.children.map((child: any) => {
                   child.url = navItemUrl(child);
@@ -61,7 +61,7 @@ export default function NavigationItem({ item }: { item: any }) {
       ) : (
         <Link
           href={item.url}
-          className="flex items-center cursor-pointer gap-x-1 text-md font-bold uppercase leading-6 text-white hover:text-[#D9B21D] transition-all hover:border-b-2 border-[#D9B21D]"
+          className="flex items-center cursor-pointer gap-x-1 text-md font-bold uppercase leading-6 text-white border-b-2 border-transparent hover:text-[#D9B21D] transition-all hover:border-b-2 hover:border-[#D9B21D]"
         >
           {item.label}
         </Link>

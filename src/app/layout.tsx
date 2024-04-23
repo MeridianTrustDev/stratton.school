@@ -4,6 +4,9 @@ import { payload } from "@/lib/payload";
 import SiteHeader from "@/components/SiteHeader";
 import { Poppins } from "next/font/google";
 import type { Header as PayloadHeader } from "@/types/payload";
+import Footer from "@/components/Footer";
+import { getHeader } from "@/lib/payload/header";
+import { getFooter } from "@/lib/payload/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,9 +29,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const response = await payload.get(`/api/headers?depth=2`);
-
-  const siteHeader: PayloadHeader = response.data.docs[0];
+  const siteHeader: PayloadHeader = await getHeader();
 
   return (
     <html lang="en">
@@ -36,7 +37,10 @@ export default async function RootLayout({
         className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden`}
       >
         <SiteHeader header={siteHeader} />
-        {children}
+        <main className="min-h-[63vh] w-full flex flex-col items-center">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

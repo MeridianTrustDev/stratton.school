@@ -23,13 +23,15 @@ export default function Hero({ slides }: any) {
     >
       {slides.map((slide: any, index: any) => (
         <SplideSlide key={index} className={"h-full bg-black"}>
-          <div className="absolute flex items-end flex-col right-16 bottom-52 text-white z-20 uppercase antialiased">
-            <h1 className="font-bold text-6xl text-right">
-              {slide.primaryText}
-            </h1>
-            <h2 className="text-2xl font-light text-right">
-              {slide.secondaryText}
-            </h2>
+          <div className="absolute h-full justify-center w-full flex items-center md:items-end md:justify-end flex-col md:right-16 md:bottom-52 text-white z-20 uppercase antialiased">
+            <div className="w-96 md:w-[70vw]">
+              <h1 className="font-bold text-3xl md:text-6xl text-center md:text-right">
+                {slide.primaryText}
+              </h1>
+              <h2 className="text-lg md:text-2xl font-light text-center md:text-right">
+                {slide.secondaryText}
+              </h2>
+            </div>
           </div>
 
           <div className="absolute z-10 h-screen w-screen bg-gradient-to-b from-black to-transparent"></div>
