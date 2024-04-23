@@ -129,6 +129,9 @@ export async function generateStaticParams() {
     "tenant.name": {
       equals: "Stratton School",
     },
+    type: {
+      not_equals: "home",
+    },
   };
 
   const stringifiedQuery = qs.stringify(
