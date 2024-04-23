@@ -1,18 +1,8 @@
-"use client";
-
 import { blocks } from "@/blocks/blockList";
 import { FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { Document, Page } from "react-pdf";
-
-import { pdfjs } from "react-pdf";
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url
-).toString();
+import React from "react";
 
 export default function File({ mode, files }: any) {
   if (mode === "named") {
@@ -21,24 +11,22 @@ export default function File({ mode, files }: any) {
         {files.map((file: any, index: any) => {
           const fileType = file.reference.url.split(".").pop();
 
-          const [numPages, setNumPages] = useState<number>();
-          const [pageNumber, setPageNumber] = useState<number>(1);
-          function onDocumentLoadSuccess({
-            numPages,
-          }: {
-            numPages: number;
-          }): void {
-            setNumPages(numPages);
-          }
-
           if (file.embed) {
             return (
-              <Document
-                file={`${process.env.NEXT_PUBLIC_BACKEND_URL}${file.reference.url}`}
-                onLoadSuccess={onDocumentLoadSuccess}
+              <object
+                data={`${process.env.NEXT_PUBLIC_BACKEND_URL}${file.reference.url}`}
+                type="application/pdf"
+                className="h-[100vh]"
+                width="100%"
+                height="100%"
               >
-                <Page pageNumber={pageNumber} />
-              </Document>
+                <p>
+                  Alternative text - include a link{" "}
+                  <a href="http://africau.edu/images/default/sample.pdf">
+                    to the PDF!
+                  </a>
+                </p>
+              </object>
             );
           }
 

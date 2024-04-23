@@ -4,6 +4,16 @@ import qs from "qs";
 import RenderBlocks from "@/components/Blocks/RenderBlocks";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { getPage } from "@/lib/payload/page";
 
 type Props = {
   params: { slug: string };
@@ -11,32 +21,14 @@ type Props = {
 };
 
 export default async function Page({ params: { slug } }: Props) {
-  let page = null;
-  try {
-    const query = {
-      slug: {
-        equals: slug,
-      },
-      "tenant.name": {
-        equals: "Stratton School",
-      },
-    };
+  const lastSlug = slug[slug.length - 1];
 
-    const stringifiedQuery = qs.stringify(
-      {
-        where: query,
-      },
-      { addQueryPrefix: true }
-    );
+  const page = await getPage(lastSlug);
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`
-    );
+  console.log(page.parent.breadcrumbs);
 
-    page = (await response.json()).docs[0];
-  } catch (error) {
-    console.log(error);
-    return;
+  if (!page) {
+    return notFound();
   }
 
   return (
@@ -53,7 +45,27 @@ export default async function Page({ params: { slug } }: Props) {
         )}
         {/* <Sidebar /> */}
       </div>
-      <div className="w-full md:w-3/4">
+      <div className="w-full md:w-3/4 flex flex-col gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            {page.breadcrumbs.map((crumb: any, index: number) => (
+              <>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`${crumb.url}`}>
+                    {crumb.label}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                {index !== page.breadcrumbs.length - 1 && (
+                  <BreadcrumbSeparator />
+                )}
+              </>
+            ))}
+          </BreadcrumbList>
+        </Breadcrumb>
         <h1 className="text-4xl font-bold uppercase text-center md:text-left">
           {page.title}
         </h1>
@@ -66,32 +78,13 @@ export default async function Page({ params: { slug } }: Props) {
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata> {
-  let page = null;
-  try {
-    const query = {
-      slug: {
-        equals: slug,
-      },
-      "tenant.name": {
-        equals: "Stratton School",
-      },
-    };
+  const lastSlug = slug[slug.length - 1];
 
-    const stringifiedQuery = qs.stringify(
-      {
-        where: query,
-      },
-      { addQueryPrefix: true }
-    );
-
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`
-    );
-
-    page = (await response.json()).docs[0];
-  } catch (error) {
-    console.log(error);
-  }
+  const page = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_BACKEND_URL
+    }/api/pages?where[slug][equals]=${lastSlug.toLowerCase()}&depth=1`
+  )?.then((res) => res.json()?.then((data) => data.docs[0]));
 
   return {
     title: page.meta.title || page.title,
