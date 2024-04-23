@@ -19,11 +19,11 @@ export default async function Footer() {
         <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-1 md:text-right flex-1">
           <h4 className="underline underline-offset-4">Contact Us</h4>
           <div className="text-sm font-bold">
-            <a href={`tel:${footer.telephone}`}>
-              <p>{footer.telephone}</p>
-            </a>
+            <a href={`tel:${footer.telephone}`}>{footer.telephone}</a>
+            <br />
             <a href={`mailto:${footer.email}`}>{footer.email}</a>
-            <p>{footer.address}</p>
+            <br />
+            {footer.address}
           </div>
         </div>
         <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-3 md:text-left flex-1">
@@ -46,11 +46,11 @@ export default async function Footer() {
         </div>
       </div>
       <div className="text-center uppercase text-xs w-[700px]">
-        <p className="text-white opacity-50">
+        <div className="text-white opacity-50">
           {footer.disclaimer.split("\n").map((str: any) => (
             <p>{str}</p>
           ))}
-        </p>
+        </div>
       </div>
     </div>
   );

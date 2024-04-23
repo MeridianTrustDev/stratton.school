@@ -39,8 +39,6 @@ export default async function Image({
     return;
   }
 
-  console.log(page);
-
   return new ImageResponse(
     (
       <div

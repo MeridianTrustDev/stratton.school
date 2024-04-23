@@ -8,7 +8,6 @@ export default function Buttons({ buttons }: any) {
     <div className="flex w-full items-center justify-center  p-4">
       <div className="flex flex-col w-full sm:flex-row max-w-7xl gap-4">
         {buttons.map((button: any, index: any) => {
-          console.log(button);
           return (
             <Link
               key={button.id}

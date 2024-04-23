@@ -36,8 +36,6 @@ export default async function Events() {
     return;
   }
 
-  console.log(events);
-
   return (
     <div className="w-full bg-[#F3F3F3] flex justify-center">
       <div className="flex w-full max-w-7xl p-4 h-50 items-center gap-4">

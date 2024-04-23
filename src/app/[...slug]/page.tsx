@@ -15,17 +15,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import { getPage } from "@/lib/payload/page";
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+interface PageParams {
+  params: { slug: string[] };
+}
 
-export default async function Page({ params: { slug } }: Props) {
+export default async function Page({ params: { slug } }: PageParams) {
   const lastSlug = slug[slug.length - 1];
 
   const page = await getPage(lastSlug);
-
-  console.log(page.parent.breadcrumbs);
 
   if (!page) {
     return notFound();
@@ -52,18 +49,26 @@ export default async function Page({ params: { slug } }: Props) {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            {page.breadcrumbs.map((crumb: any, index: number) => (
-              <>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href={`${crumb.url}`}>
-                    {crumb.label}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                {index !== page.breadcrumbs.length - 1 && (
-                  <BreadcrumbSeparator />
-                )}
-              </>
-            ))}
+            {page.breadcrumbs.length > 0 ? (
+              page.breadcrumbs.map((crumb: any, index: number) => (
+                <>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href={`${crumb.url}`}>
+                      {crumb.label}
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  {index !== page.breadcrumbs.length - 1 && (
+                    <BreadcrumbSeparator />
+                  )}
+                </>
+              ))
+            ) : (
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`${page.slug}`}>
+                  {page.title}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            )}
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-4xl font-bold uppercase text-center md:text-left">
@@ -77,14 +82,10 @@ export default async function Page({ params: { slug } }: Props) {
 
 export async function generateMetadata({
   params: { slug },
-}: Props): Promise<Metadata> {
+}: PageParams): Promise<Metadata> {
   const lastSlug = slug[slug.length - 1];
 
-  const page = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_BACKEND_URL
-    }/api/pages?where[slug][equals]=${lastSlug.toLowerCase()}&depth=1`
-  )?.then((res) => res.json()?.then((data) => data.docs[0]));
+  const page = await getPage(lastSlug);
 
   return {
     title: page.meta.title || page.title,
@@ -115,30 +116,60 @@ export async function generateMetadata({
   };
 }
 
+type Path = {
+  slug: string[];
+};
+
+type Paths = Path[];
+
 export async function generateStaticParams() {
-  try {
-    const query = {
-      "tenant.name": {
-        equals: "Stratton School",
-      },
-    };
+  let paths: Paths = [];
 
-    const stringifiedQuery = qs.stringify(
-      {
-        where: query,
-      },
-      { addQueryPrefix: true }
-    );
+  const query = {
+    "tenant.name": {
+      equals: "Stratton School",
+    },
+  };
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`
-    );
+  const stringifiedQuery = qs.stringify(
+    {
+      where: query,
+    },
+    { addQueryPrefix: true }
+  );
 
-    const { docs } = await response.json();
+  const pages = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0`
+  )?.then((res) => res.json()?.then((data) => data.docs));
 
-    return docs.map(({ slug }: { slug: string }) => slug);
-  } catch (error) {
-    console.log(error);
-    return;
+  if (pages && Array.isArray(pages) && pages.length > 0) {
+    paths = pages.map((page) => {
+      const { slug, breadcrumbs } = page;
+
+      let slugs = [slug];
+
+      const hasBreadcrumbs =
+        breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
+
+      if (hasBreadcrumbs) {
+        slugs = breadcrumbs
+          .map((crumb) => {
+            const { url } = crumb;
+            let slug: string = "";
+
+            if (url) {
+              const split = url.split("/");
+              slug = split[split.length - 1];
+            }
+
+            return slug;
+          })
+          ?.filter(Boolean);
+      }
+
+      return { slug: slugs };
+    });
   }
+
+  return paths;
 }
