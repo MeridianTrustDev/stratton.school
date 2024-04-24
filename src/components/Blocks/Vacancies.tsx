@@ -5,7 +5,7 @@ import Script from "next/script";
 export default function Vacancies({ myNewTermID }: { myNewTermID: string }) {
   return (
     <>
-      {/* <Script
+      <Script
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `var mntInitCounter = 0, mntApiScript = document.createElement("script");
@@ -20,7 +20,7 @@ export default function Vacancies({ myNewTermID }: { myNewTermID: string }) {
     }
   };`,
         }}
-      /> */}
+      />
       <div id="mnt-parent-container" className="w-[96.7%] bg-transparent"></div>
     </>
   );
