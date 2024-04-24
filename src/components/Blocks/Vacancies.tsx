@@ -8,7 +8,7 @@ export default function Vacancies({ myNewTermID }: { myNewTermID: string }) {
       <Script
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-          __html: `              var mntInitCounter = 0, mntApiScript = document.createElement("script");
+          __html: `var mntInitCounter = 0, mntApiScript = document.createElement("script");
   mntApiScript.type = "text/javascript";
   mntApiScript.src = "https://api.mynewterm.com/assets/v1/dist/js/school_vacancies.js?v=" + (new Date().getTime());
   document.body.appendChild(mntApiScript);

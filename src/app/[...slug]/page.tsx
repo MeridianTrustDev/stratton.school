@@ -1,8 +1,7 @@
-import { payload } from "@/lib/payload";
 import React from "react";
 import qs from "qs";
 import RenderBlocks from "@/components/Blocks/RenderBlocks";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
