@@ -8,7 +8,7 @@ export default async function Footer() {
 
   return (
     <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4">
-      <div className="flex flex-col  md:flex-row w-full items-center justify-center gap-4 md:gap-12">
+      <div className="flex flex-row w-full justify-center gap-12">
         <Image
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}
           width={footer.logo.width}
@@ -45,7 +45,7 @@ export default async function Footer() {
           </ul>
         </div>
       </div>
-      <div className="text-center uppercase text-xs w-full md:w-[700px]">
+      <div className="text-center uppercase text-xs w-[700px]">
         <div className="text-white opacity-50">
           {footer.disclaimer.split("\n").map((str: any) => (
             <p>{str}</p>
