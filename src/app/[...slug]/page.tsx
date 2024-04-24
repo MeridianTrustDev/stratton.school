@@ -28,7 +28,7 @@ export default async function Page({ params: { slug } }: PageParams) {
   }
 
   return (
-    <div className="max-w-7xl px-4 py-8 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4">
+    <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4">
       <div className="w-full md:w-1/4 flex justify-center max-h-64">
         {page.featuredImage && (
           <Image
@@ -70,9 +70,7 @@ export default async function Page({ params: { slug } }: PageParams) {
             )}
           </BreadcrumbList>
         </Breadcrumb>
-        <h1 className="text-4xl font-bold uppercase text-center md:text-left">
-          {page.title}
-        </h1>
+        <h1 className="text-4xl font-bold uppercase text-left">{page.title}</h1>
         <RenderBlocks layout={page.layout} />
       </div>
     </div>

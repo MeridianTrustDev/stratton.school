@@ -12,33 +12,29 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  let page = null;
-  try {
-    const query = {
-      type: {
-        equals: "home",
-      },
-      "tenant.name": {
-        equals: "Stratton School",
-      },
-    };
+  const query = {
+    type: {
+      equals: "home",
+    },
+    "tenant.name": {
+      equals: "Stratton School",
+    },
+  };
 
-    const stringifiedQuery = qs.stringify(
-      {
-        where: query,
-      },
-      { addQueryPrefix: true }
-    );
+  const stringifiedQuery = qs.stringify(
+    {
+      where: query,
+    },
+    { addQueryPrefix: true }
+  );
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=5`
-    );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=5`
+  );
 
-    page = (await response.json()).docs[0];
-  } catch (error) {
-    console.log(error);
-    return;
-  }
+  console.log(response);
+
+  const page = (await response.json()).docs[0];
 
   return (
     <>

@@ -36,7 +36,7 @@ export default function serializeLexicalRichText({
         h4: "mt-3 text-2xl font-bold",
         h5: "mt-2 text-xl font-bold",
         h6: "mt-1 text-lg font-bold",
-        p: "text-base",
+        p: "text-base my-2",
         ul: "list-disc list-inside",
         ol: "list-decimal list-inside",
         li: "list-item list-inside",
@@ -53,6 +53,7 @@ export default function serializeLexicalRichText({
               key={i}
               width={node.value.width}
               height={node.value.height}
+              className="py-2"
             />
           );
         }
@@ -98,6 +99,10 @@ export default function serializeLexicalRichText({
 
       if (!node) {
         return null;
+      }
+
+      if (node.type === "linebreak") {
+        return <br key={i} />;
       }
 
       if (node.type === "heading") {
