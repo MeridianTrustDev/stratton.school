@@ -33,18 +33,25 @@ export default function SiteHeader({ header }: { header: any }) {
             />
           </Link>
         </div>
-        {!mobileMenuOpen && (
-          <div className="flex w-full justify-end md:hidden">
-            <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <Menu className="h-10 w-10" aria-hidden="true" />
-            </button>
-          </div>
-        )}
+        <div className="flex w-full justify-end md:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {!mobileMenuOpen ? (
+              <>
+                <span className="sr-only">Open main menu</span>
+                <Menu className="h-10 w-10" aria-hidden="true" />
+              </>
+            ) : (
+              <>
+                <span className="sr-only">Close main menu</span>
+                <X className="h-10 w-10" aria-hidden="true" />
+              </>
+            )}
+          </button>
+        </div>
         <DesktopNavigation primaryNavItems={primaryNavItems} />
       </nav>
       <MobileNavigation

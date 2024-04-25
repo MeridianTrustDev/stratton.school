@@ -26,27 +26,7 @@ export default function MobileNavigation({
       onClose={setMobileMenuOpen}
     >
       <div className="fixed inset-0 z-10" />
-      <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div className="flex items-center justify-between">
-          <Link href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Stratton School</span>
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${header.logo.url}`}
-              width={header.logo.width}
-              height={header.logo.height}
-              alt={header.logo.alt}
-              className="resize-none max-w-60"
-            />
-          </Link>
-          <button
-            type="button"
-            className="-m-2.5 rounded-md p-2.5 text-white"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <span className="sr-only">Close menu</span>
-            <X className="h-10 w-10" aria-hidden="true" />
-          </button>
-        </div>
+      <Dialog.Panel className="fixed inset-y-0 mt-20 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="mt-6 flow-root">
           {primaryNavItems.length > 0 &&
             primaryNavItems.map((item: any) => {

@@ -32,8 +32,6 @@ export default async function Home() {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=5`
   );
 
-  console.log(response);
-
   const page = (await response.json()).docs[0];
 
   return (

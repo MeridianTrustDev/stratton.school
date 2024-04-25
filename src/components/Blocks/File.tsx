@@ -7,7 +7,7 @@ import React from "react";
 export default function File({ mode, files }: any) {
   if (mode === "named") {
     return (
-      <div className="flex w-full items-center justify-center gap-2 flex-wrap py-4">
+      <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
         {files.map((file: any, index: any) => {
           const fileType = file.reference.url.split(".").pop();
 
@@ -24,19 +24,16 @@ export default function File({ mode, files }: any) {
               )}
               <Link
                 href={`${process.env.NEXT_PUBLIC_BACKEND_URL}${file.reference.url}`}
-                className="flex-1 h-18 bg-gray-100 p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
+                className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
               >
                 <FileText size={30} className="text-red-700" />
-                <div className="justify-between w-full flex font-semibold uppercase tracking-wide items-center">
-                  <p className="whitespace-nowrap">
+                <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
+                  <p className="">
                     {file.name}
                     {fileType && (
                       <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
                     )}
                   </p>
-                  <span className="text-gray-600 font-light text-sm">
-                    {(file.reference.filesize / 1000).toFixed()}KB
-                  </span>
                 </div>
               </Link>
             </>
