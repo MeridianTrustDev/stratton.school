@@ -1,3 +1,4 @@
+import Accordion from "@/components/Blocks/Accordion";
 import Buttons from "@/components/Blocks/Buttons";
 import Columns from "@/components/Blocks/Columns";
 import Events from "@/components/Blocks/Events";
@@ -8,6 +9,7 @@ import Text from "@/components/Blocks/Text";
 import Vacancies from "@/components/Blocks/Vacancies";
 
 export const blocks = {
+  accordion: Accordion,
   buttonsBlock: Buttons,
   eventsBlock: Events,
   fileBlock: File,

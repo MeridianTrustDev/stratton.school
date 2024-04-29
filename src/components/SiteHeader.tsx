@@ -3,7 +3,7 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import DesktopNavigation from "./header/DesktopNavigation";
 import MobileNavigation from "./header/MobileNavigation";
 import { usePathname } from "next/navigation";
@@ -15,8 +15,41 @@ export default function SiteHeader({ header }: { header: any }) {
 
   const path = usePathname();
 
+  useEffect(() => {
+    if (path === "/") {
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (header) {
+          if (window.scrollY > 0) {
+            header.classList.add("bg-black");
+          } else {
+            header.classList.remove("bg-black");
+          }
+        }
+      });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (header) {
+          if (window.scrollY > 0) {
+            header.classList.add("bg-black");
+          } else {
+            header.classList.remove("bg-black");
+          }
+        }
+      });
+    };
+  }, [path]);
+
   return (
-    <header className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-full")}>
+    <header
+      className={cn(
+        path !== "/" ? "bg-black" : "fixed",
+        "z-20 w-full transition-all ease-in-out"
+      )}
+    >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"

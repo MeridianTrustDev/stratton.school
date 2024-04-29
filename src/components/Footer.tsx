@@ -49,8 +49,8 @@ export default async function Footer() {
       </div>
       <div className="text-center uppercase text-xs w-full md:w-[700px]">
         <div className="text-white opacity-50">
-          {footer.disclaimer.split("\n").map((str: any) => (
-            <p>{str}</p>
+          {footer.disclaimer.split("\n").map((str: any, index: number) => (
+            <p key={index}>{str}</p>
           ))}
         </div>
       </div>

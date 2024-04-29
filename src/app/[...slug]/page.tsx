@@ -28,7 +28,7 @@ export default async function Page({ params: { slug } }: PageParams) {
   }
 
   return (
-    <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4">
+    <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
       <div className="w-full md:w-1/4 flex justify-center max-h-64">
         {page.featuredImage && (
           <Image
@@ -50,7 +50,7 @@ export default async function Page({ params: { slug } }: PageParams) {
             <BreadcrumbSeparator />
             {page.breadcrumbs.length > 0 ? (
               page.breadcrumbs.map((crumb: any, index: number) => (
-                <>
+                <div key={crumb.label + index}>
                   <BreadcrumbItem>
                     <BreadcrumbLink href={`${crumb.url}`}>
                       {crumb.label}
@@ -59,7 +59,7 @@ export default async function Page({ params: { slug } }: PageParams) {
                   {index !== page.breadcrumbs.length - 1 && (
                     <BreadcrumbSeparator />
                   )}
-                </>
+                </div>
               ))
             ) : (
               <BreadcrumbItem>

@@ -39,14 +39,14 @@ export default async function Home() {
       <div className="h-[50vh] md:h-[99vh] w-[100vw] relative">
         <Hero slides={page.hero.slides} />
       </div>
-      <div className="flex w-full items-end justify-center">
+      <div className="flex w-full items-end justify-center bg-white">
         <Separator className="h-[10px] bg-[#D9B21D]" />
         <div className="absolute flex flex-col items-center p-4 w-10 h-20 bg-[#4EBCC1]">
           <Mouse size={30} className="text-white" />
           <ChevronsDown size={25} className="text-white" />
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full bg-white">
         <RenderBlocks layout={page.layout} />
       </div>
     </>
