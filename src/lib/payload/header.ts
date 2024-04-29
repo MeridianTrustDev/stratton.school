@@ -16,7 +16,12 @@ export const getHeader = async () => {
     );
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/headers${stringifiedQuery}&depth=2`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/headers${stringifiedQuery}&depth=2`,
+      {
+        next: {
+          tags: ["header"],
+        },
+      }
     );
 
     return (await response.json()).docs[0];

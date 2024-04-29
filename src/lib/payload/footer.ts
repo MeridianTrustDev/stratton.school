@@ -16,7 +16,12 @@ export const getFooter = async () => {
     );
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/footers${stringifiedQuery}&depth=2`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/footers${stringifiedQuery}&depth=2`,
+      {
+        next: {
+          tags: ["footer"],
+        },
+      }
     );
 
     return (await response.json()).docs[0];
