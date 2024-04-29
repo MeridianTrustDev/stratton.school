@@ -29,19 +29,21 @@ export default async function Footer() {
         <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-3 md:text-left flex-1">
           <h4 className="underline underline-offset-4">Quick Links</h4>
           <ul className="text-sm font-bold">
-            {footer.primaryNavigation.navItems.map((link: any) => (
-              <li key={link.id}>
-                <Link
-                  href={
-                    link.type === "custom"
-                      ? link.url
-                      : `${process.env.NEXT_PUBLIC_BASE_URL}${link.reference.slug}`
-                  }
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {footer.primaryNavigation.navItems.map((link: any) => {
+              return (
+                <li key={link.id}>
+                  <Link
+                    href={
+                      link.type === "custom"
+                        ? link.url
+                        : `${process.env.NEXT_PUBLIC_BASE_URL}${link.reference.slug}`
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
