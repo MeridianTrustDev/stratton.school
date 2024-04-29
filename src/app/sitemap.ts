@@ -16,6 +16,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { addQueryPrefix: true }
     );
 
+    console.log(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`
+    );
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`
     );
