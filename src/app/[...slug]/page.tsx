@@ -77,47 +77,47 @@ export default async function Page({ params: { slug } }: PageParams) {
   );
 }
 
-export async function generateMetadata({
-  params: { slug },
-}: PageParams): Promise<Metadata> {
-  const lastSlug = slug[slug.length - 1];
+// export async function generateMetadata({
+//   params: { slug },
+// }: PageParams): Promise<Metadata> {
+//   const lastSlug = slug[slug.length - 1];
 
-  const page = await getPage(lastSlug);
+//   const page = await getPage(lastSlug);
 
-  return {
-    title:
-      page.meta !== undefined && page.meta.title !== undefined
-        ? page.meta.title
-        : page.title,
-    description:
-      page.meta !== undefined && page.meta.description !== undefined
-        ? page.meta.description
-        : "",
-    // openGraph: {
-    //   images: [
-    //     ...(page.meta.image
-    //       ? [
-    //           {
-    //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`,
-    //             width: page.meta.image.width,
-    //             height: page.meta.image.height,
-    //             alt: page.meta.image.alt,
-    //           },
-    //         ]
-    //       : page.featuredImage
-    //       ? [
-    //           {
-    //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`,
-    //             width: page.featuredImage.width,
-    //             height: page.featuredImage.height,
-    //             alt: page.featuredImage.alt,
-    //           },
-    //         ]
-    //       : []),
-    //   ],
-    // },
-  };
-}
+//   return {
+//     title:
+//       page.meta !== undefined && page.meta.title !== undefined
+//         ? page.meta.title
+//         : page.title,
+//     description:
+//       page.meta !== undefined && page.meta.description !== undefined
+//         ? page.meta.description
+//         : "",
+//     // openGraph: {
+//     //   images: [
+//     //     ...(page.meta.image
+//     //       ? [
+//     //           {
+//     //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`,
+//     //             width: page.meta.image.width,
+//     //             height: page.meta.image.height,
+//     //             alt: page.meta.image.alt,
+//     //           },
+//     //         ]
+//     //       : page.featuredImage
+//     //       ? [
+//     //           {
+//     //             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`,
+//     //             width: page.featuredImage.width,
+//     //             height: page.featuredImage.height,
+//     //             alt: page.featuredImage.alt,
+//     //           },
+//     //         ]
+//     //       : []),
+//     //   ],
+//     // },
+//   };
+// }
 
 type Path = {
   slug: string[];
