@@ -24,6 +24,7 @@ export async function GET(request: NextRequest) {
 
   if (tag) {
     revalidateTag(tag);
+    console.log("Revalidated tag", tag);
     return Response.json({ revalidated: true, now: Date.now() });
   }
 
