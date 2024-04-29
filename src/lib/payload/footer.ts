@@ -19,7 +19,7 @@ export const getFooter = async () => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/footers${stringifiedQuery}&depth=2`,
       {
         next: {
-          tags: ["footer"],
+          tags: ["navigation"],
         },
       }
     );

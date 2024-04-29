@@ -19,7 +19,7 @@ export const getHeader = async () => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/headers${stringifiedQuery}&depth=2`,
       {
         next: {
-          tags: ["header"],
+          tags: ["navigation"],
         },
       }
     );
