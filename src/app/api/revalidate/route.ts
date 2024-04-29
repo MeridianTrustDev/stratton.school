@@ -6,6 +6,8 @@ export async function GET(request: NextRequest) {
   const tag = request.nextUrl.searchParams.get("tag");
   const secret = request.nextUrl.searchParams.get("secret");
 
+  console.log("Revalidating", { path, tag, secret });
+
   if (secret !== process.env.REVALIDATION_KEY) {
     return Response.json({
       revalidated: false,
