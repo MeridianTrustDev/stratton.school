@@ -85,8 +85,8 @@ export async function generateMetadata({
   const page = await getPage(lastSlug);
 
   return {
-    title: page.meta.title ? page.meta.title : page.title,
-    description: page.meta.description ? page.meta.description : "",
+    title: page.meta?.title ? page.meta.title : page.title,
+    description: page.meta?.description ? page.meta.description : "",
     // openGraph: {
     //   images: [
     //     ...(page.meta.image
