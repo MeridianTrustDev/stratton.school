@@ -45,10 +45,7 @@ export default function SiteHeader({ header }: { header: any }) {
 
   return (
     <header
-      className={cn(
-        path !== "/" ? "bg-black" : "fixed",
-        "z-20 w-full transition-all ease-in-out"
-      )}
+      className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-screen")}
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
