@@ -47,53 +47,52 @@ export default function NavigationItem({ item }: { item: any }) {
                   child.url = navItemUrl(child);
 
                   if (child.children.length > 0) {
-                    return child.children.map((childChild: any) => {
-                      const [childOpen, setChildOpen] = React.useState(false);
+                    const [childOpen, setChildOpen] = React.useState(false);
 
-                      return (
-                        <Disclosure as="div">
-                          {({ open }) => (
-                            <>
-                              <Disclosure.Button className="flex justify-between items-center rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
-                                {child.label}
-                                <ChevronDown
-                                  className={cn(
-                                    open ? "rotate-180" : "",
-                                    "h-5 w-5 flex-none"
-                                  )}
-                                  aria-hidden="true"
-                                />
-                              </Disclosure.Button>
+                    return (
+                      <Disclosure as="div" key={child.id}>
+                        {({ open }) => (
+                          <>
+                            <Disclosure.Button className="flex justify-between items-center rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
+                              {child.label}
+                              <ChevronDown
+                                className={cn(
+                                  open ? "rotate-180" : "",
+                                  "h-5 w-5 flex-none"
+                                )}
+                                aria-hidden="true"
+                              />
+                            </Disclosure.Button>
 
-                              <Disclosure.Panel>
-                                {child.children &&
-                                  child.children.length > 0 &&
-                                  child.children.map((childChild: any) => {
-                                    console.log(childChild);
-                                    childChild.url = navItemUrl(childChild);
+                            <Disclosure.Panel>
+                              {child.children &&
+                                child.children.length > 0 &&
+                                child.children.map((childChild: any) => {
+                                  childChild.url = navItemUrl(childChild);
 
-                                    return (
-                                      <Link
-                                        onClick={() => setChildOpen(false)}
-                                        href={childChild.url}
-                                        className="block rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
-                                      >
-                                        {childChild.label}
-                                      </Link>
-                                    );
-                                  })}
-                              </Disclosure.Panel>
-                            </>
-                          )}
-                        </Disclosure>
-                      );
-                    });
+                                  return (
+                                    <Link
+                                      key={childChild.id}
+                                      onClick={() => setIsShowing(false)}
+                                      href={childChild.url}
+                                      className="block rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                                    >
+                                      {childChild.label}
+                                    </Link>
+                                  );
+                                })}
+                            </Disclosure.Panel>
+                          </>
+                        )}
+                      </Disclosure>
+                    );
                   }
 
                   return (
                     <Link
                       key={child.id}
                       href={child.url}
+                      onClick={() => setIsShowing(false)}
                       className="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
                     >
                       {child.label}

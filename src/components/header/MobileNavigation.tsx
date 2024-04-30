@@ -49,15 +49,65 @@ export default function MobileNavigation({
                           </Disclosure.Button>
                           <Disclosure.Panel className="mt-2 space-y-2">
                             {item.children.length > 0 &&
-                              item.children.map((child: any) => (
-                                <Link
-                                  onClick={() => setMobileMenuOpen(false)}
-                                  href={child.url}
-                                  className="flex w-full items-center justify-between rounded-lg py-2 pl-8 pr-3.5 text-sm font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
-                                >
-                                  {child.label}
-                                </Link>
-                              ))}
+                              item.children.map((child: any) => {
+                                if (child.children.length > 0) {
+                                  const [childOpen, setChildOpen] =
+                                    React.useState(false);
+
+                                  return (
+                                    <Disclosure as="div" key={child.id}>
+                                      {({ open }) => (
+                                        <>
+                                          <Disclosure.Button className="flex w-full justify-between items-center rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900">
+                                            {child.label}
+                                            <ChevronDown
+                                              className={cn(
+                                                open ? "rotate-180" : "",
+                                                "h-5 w-5 flex-none"
+                                              )}
+                                              aria-hidden="true"
+                                            />
+                                          </Disclosure.Button>
+
+                                          <Disclosure.Panel>
+                                            {child.children &&
+                                              child.children.length > 0 &&
+                                              child.children.map(
+                                                (childChild: any) => {
+                                                  childChild.url =
+                                                    navItemUrl(childChild);
+
+                                                  return (
+                                                    <Link
+                                                      key={childChild.id}
+                                                      onClick={() =>
+                                                        setMobileMenuOpen(false)
+                                                      }
+                                                      href={childChild.url}
+                                                      className="flex w-full justify-between items-center rounded-lg pl-16 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900"
+                                                    >
+                                                      {childChild.label}
+                                                    </Link>
+                                                  );
+                                                }
+                                              )}
+                                          </Disclosure.Panel>
+                                        </>
+                                      )}
+                                    </Disclosure>
+                                  );
+                                }
+
+                                return (
+                                  <Link
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    href={child.url}
+                                    className="flex w-full items-center justify-between rounded-lg py-2 pl-8 pr-3.5 text-sm font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
+                                  >
+                                    {child.label}
+                                  </Link>
+                                );
+                              })}
                           </Disclosure.Panel>
                         </>
                       )}
