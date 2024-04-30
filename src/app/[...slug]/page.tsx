@@ -50,16 +50,14 @@ export default async function Page({ params: { slug } }: PageParams) {
             <BreadcrumbSeparator />
             {page.breadcrumbs.length > 0 ? (
               page.breadcrumbs.map((crumb: any, index: number) => (
-                <div key={crumb.label + index}>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href={`${crumb.url}`}>
-                      {crumb.label}
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
+                <BreadcrumbItem key={`${crumb.label}-${index}`}>
+                  <BreadcrumbLink href={`${crumb.url}`}>
+                    {crumb.label}
+                  </BreadcrumbLink>
                   {index !== page.breadcrumbs.length - 1 && (
                     <BreadcrumbSeparator />
                   )}
-                </div>
+                </BreadcrumbItem>
               ))
             ) : (
               <BreadcrumbItem>

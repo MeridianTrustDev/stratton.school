@@ -35,7 +35,7 @@ export default function serializeLexicalRichText({
         h3: "mt-4 text-3xl font-bold",
         h4: "mt-3 text-2xl font-bold",
         h5: "mt-2 text-xl font-bold",
-        h6: "mt-1 text-lg font-bold",
+        h6: "mt-1 text-lg font-semibold",
         p: "text-base my-2",
         ul: "list-disc list-inside",
         ol: "list-decimal list-inside",
