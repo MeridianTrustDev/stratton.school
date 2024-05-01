@@ -9,9 +9,10 @@ import { Metadata } from "next";
 import MeridianTrust from "@/components/MeridianTrust";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
+import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Home | Stratton School",
 };
 
 export default async function Home() {
@@ -39,6 +40,13 @@ export default async function Home() {
 
   return (
     <>
+      <Head>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
+          key="canonical"
+        />
+      </Head>
       <div className="h-[50vh] md:h-[99vh] w-[100vw] relative bg-black">
         <Link
           href="https://meridiantrust.co.uk"

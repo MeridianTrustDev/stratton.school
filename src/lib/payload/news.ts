@@ -6,6 +6,9 @@ export const getNews = async (slug?: string) => {
       "tenant.name": {
         equals: "Stratton School",
       },
+      _status: {
+        equals: "published",
+      },
       ...(slug && {
         slug: {
           equals: slug,
@@ -21,7 +24,12 @@ export const getNews = async (slug?: string) => {
     );
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/news${stringifiedQuery}&depth=2`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/news${stringifiedQuery}&depth=2`,
+      {
+        next: {
+          tags: ["news"],
+        },
+      }
     );
 
     return slug

@@ -16,16 +16,24 @@ import { getNews } from "@/lib/payload/news";
 import { Newspaper } from "lucide-react";
 import { format } from "date-fns";
 import Link from "next/link";
+import Head from "next/head";
 
 interface PageParams {
   params: { slug: string };
 }
 
-export default async function Page({ params: { slug } }: PageParams) {
+export default async function Page() {
   const news = await getNews();
 
   return (
     <div className="max-w-7xl p-4 w-full flex flex-col md:justify-start gap-4 bg-white">
+      <Head>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}/news`}
+          key="canonical"
+        />
+      </Head>
       <div className="w-full flex flex-col gap-4">
         <Breadcrumb>
           <BreadcrumbList>

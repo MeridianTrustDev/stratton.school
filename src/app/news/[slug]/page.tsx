@@ -13,6 +13,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getNews } from "@/lib/payload/news";
+import Head from "next/head";
 
 interface PageParams {
   params: { slug: string };
@@ -27,6 +28,13 @@ export default async function Page({ params: { slug } }: PageParams) {
 
   return (
     <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
+      <Head>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}/news/${news.slug}`}
+          key="canonical"
+        />
+      </Head>
       <div className="w-full md:w-1/4 flex justify-center max-h-64">
         {news.featuredImage && (
           <Image
@@ -68,9 +76,6 @@ export async function generateMetadata({
   params: { slug },
 }: PageParams): Promise<Metadata> {
   const news = await getNews(slug);
-
-  console.log(news);
-
   return {
     title: news.title,
     // openGraph: {
@@ -99,31 +104,10 @@ export async function generateMetadata({
   };
 }
 
-type Path = {
-  slug: string[];
-};
-
-type Paths = Path[];
-
 export async function generateStaticParams() {
-  const query = {
-    "tenant.name": {
-      equals: "Stratton School",
-    },
-  };
+  const news = await getNews();
 
-  const stringifiedQuery = qs.stringify(
-    {
-      where: query,
-    },
-    { addQueryPrefix: true }
-  );
-
-  const pages = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/news${stringifiedQuery}&depth=2`
-  )?.then((res) => res.json()?.then((data) => data.docs));
-
-  return pages.map((post: any) => ({
-    slug: post.slug,
+  return news.map((news: any) => ({
+    slug: news.slug,
   }));
 }

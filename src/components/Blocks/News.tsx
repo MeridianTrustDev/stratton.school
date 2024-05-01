@@ -14,32 +14,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import { getNews } from "@/lib/payload/news";
 
 export default async function News() {
-  let news = null;
-  try {
-    const query = {
-      "tenant.name": {
-        equals: "Stratton School",
-      },
-      // This query could be much more complex
-      // and QS would handle it beautifully
-    };
-
-    const stringifiedQuery = qs.stringify(
-      {
-        where: query,
-      },
-      { addQueryPrefix: true }
-    );
-
-    const response = await payload.get(`/api/news${stringifiedQuery}&depth=1`);
-
-    news = response.data.docs;
-  } catch (error) {
-    console.log(error);
-    return;
-  }
+  const news = await getNews();
 
   return (
     <div className="w-full bg-white flex justify-center">
