@@ -67,7 +67,11 @@ export default function serializeLexicalRichText({
         );
 
         if (node.format & IS_BOLD) {
-          text = <strong key={i}>{text}</strong>;
+          text = (
+            <strong className="font-bold" key={i}>
+              {text}
+            </strong>
+          );
         }
 
         if (node.format & IS_CODE) {

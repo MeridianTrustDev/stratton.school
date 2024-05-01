@@ -30,13 +30,6 @@ export default async function Page({ params: { slug } }: PageParams) {
 
   return (
     <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
-      <Head>
-        <link
-          rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_BASE_URL}/${page.slug}`}
-          key="canonical"
-        />
-      </Head>
       <div className="w-full md:w-1/4 flex justify-center max-h-64">
         {page.featuredImage && (
           <Image
@@ -93,6 +86,20 @@ export async function generateMetadata({
   return {
     title: page.meta.title || page.title,
     description: page.meta.description,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/${page.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@StrattonSchoolBeds",
+      title: page.meta.title || page.title,
+      description: page.meta.description || "",
+      // image: page.meta.image
+      //   ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`
+      //   : page.featuredImage
+      //   ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`
+      //   : undefined,
+    },
     // openGraph: {
     //   images: [
     //     ...(page.meta.image
@@ -145,7 +152,7 @@ export async function generateStaticParams() {
   );
 
   const pages = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=1000`
   )?.then((res) => res.json()?.then((data) => data.docs));
 
   if (pages && Array.isArray(pages) && pages.length > 0) {

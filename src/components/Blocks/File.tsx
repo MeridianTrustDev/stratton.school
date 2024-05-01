@@ -1,45 +1,55 @@
 import { blocks } from "@/blocks/blockList";
+import { getFiles } from "@/lib/payload/files";
 import { FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function File({ mode, files }: any) {
-  if (mode === "named") {
-    return (
-      <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
-        {files.map((file: any, index: any) => {
-          const fileType = file.reference.url.split(".").pop();
-
-          return (
-            <>
-              {file.embed && (
-                <object
-                  data={`${process.env.NEXT_PUBLIC_BACKEND_URL}${file.reference.url}`}
-                  type="application/pdf"
-                  className="h-[100vh]"
-                  width="100%"
-                  height="100%"
-                />
-              )}
-              <Link
-                href={`${process.env.NEXT_PUBLIC_BACKEND_URL}${file.reference.url}`}
-                className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
-              >
-                <FileText size={30} className="text-red-700" />
-                <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
-                  <p className="">
-                    {file.name}
-                    {fileType && (
-                      <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
-                    )}
-                  </p>
-                </div>
-              </Link>
-            </>
-          );
-        })}
-      </div>
-    );
+export default async function File({ mode, category, files }: any) {
+  if (mode === "byCategory") {
+    files = await getFiles(category.name);
   }
+
+  return (
+    <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
+      {files.map((file: any, index: any) => {
+        const fileType =
+          mode === "byCategory"
+            ? file.url.split(".").pop()
+            : file.reference.url.split(".").pop();
+
+        return (
+          <>
+            {file.embed && (
+              <object
+                data={`${process.env.NEXT_PUBLIC_BACKEND_URL}${
+                  mode === "byCategory" ? file.url : file.reference.url
+                }`}
+                type="application/pdf"
+                className="h-[100vh]"
+                width="100%"
+                height="100%"
+              />
+            )}
+            <Link
+              href={`${process.env.NEXT_PUBLIC_BACKEND_URL}${
+                mode === "byCategory" ? file.url : file.reference.url
+              }`}
+              className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
+            >
+              <FileText size={30} className="text-red-700" />
+              <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
+                <p className="">
+                  {file.name}
+                  {fileType && (
+                    <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
+                  )}
+                </p>
+              </div>
+            </Link>
+          </>
+        );
+      })}
+    </div>
+  );
 }

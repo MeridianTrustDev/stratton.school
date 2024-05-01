@@ -78,6 +78,9 @@ export async function generateMetadata({
   const news = await getNews(slug);
   return {
     title: news.title,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/news/${news.slug}`,
+    },
     // openGraph: {
     //   images: [
     //     ...(page.meta.image
