@@ -15,6 +15,9 @@ export default async function Events() {
       "tenant.name": {
         equals: "Stratton School",
       },
+      "start.date": {
+        greater_than: new Date(),
+      },
       // This query could be much more complex
       // and QS would handle it beautifully
     };
@@ -27,7 +30,7 @@ export default async function Events() {
     );
 
     const response = await payload.get(
-      `/api/events${stringifiedQuery}&depth=0`
+      `/api/events${stringifiedQuery}&depth=2`
     );
 
     events = response.data.docs;
@@ -36,10 +39,12 @@ export default async function Events() {
     return;
   }
 
+  console.log(events);
+
   return (
     <div className="w-full bg-[#F3F3F3] flex justify-center">
       <div className="flex w-full max-w-7xl p-4 h-50 items-center gap-4">
-        <div className="w-52 flex flex-col gap-2">
+        <div className="w-52 h-44 flex flex-col gap-2 justify-center">
           <h2 className="uppercase font-bold text-3xl text-gray-700">
             Upcoming Events
           </h2>

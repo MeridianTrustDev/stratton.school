@@ -39,14 +39,22 @@ export default async function Home() {
 
   return (
     <>
-      <div className="h-[50vh] md:h-[99vh] w-[100vw] relative">
+      <div className="h-[50vh] md:h-[99vh] w-[100vw] relative bg-black">
         <Link
           href="https://meridiantrust.co.uk"
           target="_blank"
-          className="flex flex-col gap-1 tracking-wide text-center text-sm absolute m-4 bottom-0 left-0 bg-white rounded-xl z-10 px-4 py-2 items-center justify-center"
+          className="hidden md:flex flex-col gap-1 drop-shadow-lg hover:-translate-y-1 ease-in-out transition-all tracking-wide text-center text-sm absolute m-4 bottom-0 left-0 bg-white rounded-xl z-10 px-4 py-2 items-center justify-center"
         >
           <span>Proud to be part of</span>
           <Icons.MeridianTrust className="w-48" />
+        </Link>
+        <Link
+          href="https://meridiantrust.co.uk"
+          target="_blank"
+          className="flex w-full md:hidden flex-col gap-1 drop-shadow-lg tracking-wide text-center text-sm absolute bottom-0 left-0 z-10 px-4 py-2 items-center justify-center"
+        >
+          <span className="text-white">Proud to be part of</span>
+          <Icons.MeridianTrust className="w-48" variant="white" />
         </Link>
         <Hero slides={page.hero.slides} />
       </div>

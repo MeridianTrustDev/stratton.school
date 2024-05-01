@@ -16,9 +16,14 @@ export default function SiteHeader({ header }: { header: any }) {
   const path = usePathname();
 
   useEffect(() => {
+    const header = document.querySelector("header");
+
     if (path === "/") {
+      if (window.scrollY > 0) {
+        header?.classList.add("bg-black");
+      }
+
       window.addEventListener("scroll", () => {
-        const header = document.querySelector("header");
         if (header) {
           if (window.scrollY > 0) {
             header.classList.add("bg-black");
@@ -31,7 +36,6 @@ export default function SiteHeader({ header }: { header: any }) {
 
     return () => {
       window.removeEventListener("scroll", () => {
-        const header = document.querySelector("header");
         if (header) {
           if (window.scrollY > 0) {
             header.classList.add("bg-black");
@@ -45,7 +49,7 @@ export default function SiteHeader({ header }: { header: any }) {
 
   return (
     <header
-      className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-screen")}
+      className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-screen ")}
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
