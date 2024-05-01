@@ -1,5 +1,6 @@
 import { blocks } from "@/blocks/blockList";
 import { getFiles } from "@/lib/payload/files";
+import { cn } from "@/lib/utils";
 import { FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +18,8 @@ export default async function File({ mode, category, files }: any) {
           mode === "byCategory"
             ? file.url.split(".").pop()
             : file.reference.url.split(".").pop();
+
+        console.log(file);
 
         return (
           <>
@@ -37,10 +40,21 @@ export default async function File({ mode, category, files }: any) {
               }`}
               className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
             >
-              <FileText size={30} className="text-red-700" />
+              <div>
+                <FileText
+                  size={30}
+                  className={cn(
+                    fileType === "pdf" && `text-red-700`,
+                    fileType.startsWith("doc") && `text-blue-500`,
+                    fileType.startsWith("xls") && `text-green-500`,
+                    fileType.startsWith("csv") && `text-green-500`,
+                    "w-[30px]"
+                  )}
+                />
+              </div>
               <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
                 <p className="">
-                  {file.name}
+                  {mode === "byCategory" ? file.name : file.reference.name}
                   {fileType && (
                     <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
                   )}
