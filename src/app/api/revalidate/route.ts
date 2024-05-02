@@ -15,7 +15,12 @@ export async function GET(request: NextRequest) {
   }
 
   if (path) {
-    revalidatePath(`/${path}`);
+    if (path === "/") {
+      revalidatePath(`/`, "layout");
+    } else {
+      revalidatePath(`/${path}`);
+    }
+
     console.log("Revalidated path", path);
     return Response.json({ revalidated: true, now: Date.now() });
   }
