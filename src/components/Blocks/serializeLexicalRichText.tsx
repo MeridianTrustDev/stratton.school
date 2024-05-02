@@ -44,6 +44,8 @@ export default function serializeLexicalRichText({
         a: "text-blue-500 underline",
       };
 
+      console.log(node.fields);
+
       if (node.type === "upload") {
         if (node.value.mimeType.includes("image")) {
           return (
@@ -195,9 +197,7 @@ export default function serializeLexicalRichText({
           return (
             <a
               className={`${classNames.a}`}
-              href={escapeHTML(
-                node.fields?.linkType === "custom" ? node?.fields?.url : ""
-              )}
+              href={escapeHTML(node?.fields?.url)}
               target={node.fields?.newTab ? "_blank" : "_self"}
               key={i}
             >
