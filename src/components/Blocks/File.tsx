@@ -22,7 +22,7 @@ export default async function File({ mode, category, files }: any) {
         console.log(file);
 
         return (
-          <>
+          <div key={file.id} className="flex-1 flex w-full">
             {file.embed && (
               <object
                 data={`${process.env.NEXT_PUBLIC_BACKEND_URL}${
@@ -32,6 +32,7 @@ export default async function File({ mode, category, files }: any) {
                 className="h-[100vh]"
                 width="100%"
                 height="100%"
+                key={`${file.id}-embed`}
               />
             )}
             <Link
@@ -61,7 +62,7 @@ export default async function File({ mode, category, files }: any) {
                 </p>
               </div>
             </Link>
-          </>
+          </div>
         );
       })}
     </div>
