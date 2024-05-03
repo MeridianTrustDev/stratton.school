@@ -36,7 +36,7 @@ export default async function RootLayout({
   const siteHeader: PayloadHeader = await getHeader();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
       >

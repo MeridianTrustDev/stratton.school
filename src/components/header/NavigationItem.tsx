@@ -47,13 +47,11 @@ export default function NavigationItem({ item }: { item: any }) {
                   child.url = navItemUrl(child);
 
                   if (child.children.length > 0) {
-                    const [childOpen, setChildOpen] = React.useState(false);
-
                     return (
                       <Disclosure as="div" key={child.id}>
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex justify-between items-center rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
+                            <Disclosure.Button className="flex justify-between items-center rounded-lg text-left px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
                               {child.label}
                               <ChevronDown
                                 className={cn(

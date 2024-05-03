@@ -1,5 +1,6 @@
 import escapeHTML from "escape-html";
 import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
@@ -44,7 +45,7 @@ export default function serializeLexicalRichText({
         a: "text-blue-500 underline",
       };
 
-      console.log(node.fields);
+      console.log(node.type);
 
       if (node.type === "upload") {
         if (node.value.mimeType.includes("image")) {
@@ -195,14 +196,18 @@ export default function serializeLexicalRichText({
 
         case "link":
           return (
-            <a
+            <Link
               className={`${classNames.a}`}
-              href={escapeHTML(node?.fields?.url)}
+              href={escapeHTML(
+                node.fields.linkType === "internal"
+                  ? `/${node.fields.doc.value.slug}`
+                  : node?.fields?.url
+              )}
               target={node.fields?.newTab ? "_blank" : "_self"}
               key={i}
             >
               {serializeLexicalRichText({ children: node.children })}
-            </a>
+            </Link>
           );
 
         default:
