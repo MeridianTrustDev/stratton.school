@@ -1,9 +1,13 @@
-import { navItemUrl } from "@/lib/utils";
+"use client";
+
+import { cn, navItemUrl } from "@/lib/utils";
 import Link from "next/link";
-import qs from "qs";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-export default async function Sidebar({ parent }: any) {
+export default function Sidebar({ parent }: any) {
+  const pathname = usePathname();
+
   return (
     <div className="w-full h-fit bg-[#F3F3F3] px-4 py-2">
       <div>
@@ -11,15 +15,19 @@ export default async function Sidebar({ parent }: any) {
           {parent.label}
         </h3>
       </div>
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-1">
         {parent.children.map((child: any) => {
-          console.log(child);
           const url = navItemUrl(child);
           return (
             <Link
               href={url}
               key={child.id}
-              className="uppercase font-bold text-[#4C4C4C]"
+              className={cn(
+                url === pathname
+                  ? "bg-[#4EBCC1] text-[#fff]"
+                  : "text-[#4C4C4C]",
+                "uppercase font-bold px-2 py-1"
+              )}
             >
               {child.label}
             </Link>

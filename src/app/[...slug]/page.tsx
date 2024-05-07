@@ -31,19 +31,25 @@ export default async function Page({ params: { slug } }: PageParams) {
     return notFound();
   }
 
-  const header = await getHeader();
+  let parent = null;
 
-  const parent = header.primaryNavigation.navItems.filter((item: any) => {
-    if (item.reference && item.reference.id && page.breadcrumbs[0]) {
-      return item.reference.id === page.breadcrumbs[0].doc;
-    } else {
-      return false;
-    }
-  })[0];
+  console.log(page.breadcrumbs);
+
+  if (page.breadcrumbs.length > 0) {
+    const header = await getHeader();
+
+    parent = header.primaryNavigation.navItems.filter((item: any) => {
+      if (item.reference && item.reference.id && page.breadcrumbs[0]) {
+        return item.reference.id === page.breadcrumbs[0].doc;
+      } else {
+        return false;
+      }
+    })[0];
+  }
 
   return (
     <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
-      <div className="w-full md:w-1/4 flex flex-col justify-center gap-4 z-10">
+      <div className="w-full md:w-1/4 flex flex-col gap-4 z-10">
         {page.featuredImage && (
           <Image
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`}
@@ -53,7 +59,7 @@ export default async function Page({ params: { slug } }: PageParams) {
             className="object-contain"
           />
         )}
-        <Sidebar parent={parent} />
+        {parent && <Sidebar parent={parent} />}
       </div>
       <div className="w-full md:w-3/4 flex flex-col gap-4 z-10">
         <Breadcrumb>
@@ -64,7 +70,7 @@ export default async function Page({ params: { slug } }: PageParams) {
             <BreadcrumbSeparator />
             {page.breadcrumbs.length > 0 ? (
               page.breadcrumbs.map((crumb: any, index: number) => (
-                <>
+                <div className="flex gap-1.5 sm:gap-2.5 items-center justify-center">
                   <BreadcrumbItem key={`${crumb.label}-${index}`}>
                     <BreadcrumbLink href={`${crumb.url}`}>
                       {crumb.label}
@@ -73,7 +79,7 @@ export default async function Page({ params: { slug } }: PageParams) {
                   {index !== page.breadcrumbs.length - 1 && (
                     <BreadcrumbSeparator key={`separator-${index}`} />
                   )}
-                </>
+                </div>
               ))
             ) : (
               <BreadcrumbItem>
