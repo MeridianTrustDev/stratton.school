@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import { getPage } from "@/lib/payload/page";
 import Head from "next/head";
+import { Icons } from "@/components/Icons";
+import { getHeader } from "@/lib/payload/header";
+import Sidebar from "@/components/Sidebar";
 
 interface PageParams {
   params: { slug: string[] };
@@ -28,9 +31,19 @@ export default async function Page({ params: { slug } }: PageParams) {
     return notFound();
   }
 
+  const header = await getHeader();
+
+  const parent = header.primaryNavigation.navItems.filter((item: any) => {
+    if (item.reference && item.reference.id && page.breadcrumbs[0]) {
+      return item.reference.id === page.breadcrumbs[0].doc;
+    } else {
+      return false;
+    }
+  })[0];
+
   return (
     <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
-      <div className="w-full md:w-1/4 flex justify-center max-h-64">
+      <div className="w-full md:w-1/4 flex flex-col justify-center gap-4 z-10">
         {page.featuredImage && (
           <Image
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`}
@@ -40,9 +53,9 @@ export default async function Page({ params: { slug } }: PageParams) {
             className="object-contain"
           />
         )}
-        {/* <Sidebar /> */}
+        <Sidebar parent={parent} />
       </div>
-      <div className="w-full md:w-3/4 flex flex-col gap-4">
+      <div className="w-full md:w-3/4 flex flex-col gap-4 z-10">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -74,6 +87,7 @@ export default async function Page({ params: { slug } }: PageParams) {
         <h1 className="text-4xl font-bold uppercase text-left">{page.title}</h1>
         <RenderBlocks layout={page.layout} />
       </div>
+      <Icons.Stratton className="absolute w-[50vw] hidden md:block md:top-10 left-0 opacity-[0.02]" />
     </div>
   );
 }

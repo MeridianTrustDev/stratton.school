@@ -7,7 +7,7 @@ export default async function Footer() {
   const footer = await getFooter();
 
   return (
-    <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4">
+    <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4 z-20">
       <div className="flex flex-col  md:flex-row w-full items-center justify-center gap-4 md:gap-12">
         <Image
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}

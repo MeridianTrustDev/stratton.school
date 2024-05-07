@@ -47,9 +47,18 @@ export default function SiteHeader({ header }: { header: any }) {
     };
   }, [path]);
 
+  const randomColour = () => {
+    const colours = ["#4EBCC1", "#D9B21D"];
+
+    return colours[Math.floor(Math.random() * colours.length)];
+  };
+
   return (
     <header
       className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-screen ")}
+      style={{
+        borderBottom: path !== "/" ? `10px solid ${randomColour()}` : "none",
+      }}
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
