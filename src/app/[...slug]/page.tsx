@@ -48,7 +48,7 @@ export default async function Page({ params: { slug } }: PageParams) {
   }
 
   return (
-    <div className="max-w-7xl p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
+    <div className="max-w-7xl pt-40 p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
       <div className="w-full md:w-1/4 flex flex-col gap-4 z-10">
         {page.featuredImage && (
           <Image
@@ -93,7 +93,7 @@ export default async function Page({ params: { slug } }: PageParams) {
         <h1 className="text-4xl font-bold uppercase text-left">{page.title}</h1>
         <RenderBlocks layout={page.layout} />
       </div>
-      <Icons.Stratton className="absolute w-[50vw] hidden md:block md:top-10 left-0 opacity-[0.02]" />
+      <Icons.Stratton className="absolute w-[80vh] hidden md:block md:top-10 left-0 opacity-[0.02]" />
     </div>
   );
 }

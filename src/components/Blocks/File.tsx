@@ -14,6 +14,7 @@ export default async function File({ mode, category, files }: any) {
   return (
     <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
       {files.map((file: any, index: any) => {
+        console.log(file);
         const fileType =
           mode === "byCategory"
             ? file.url.split(".").pop()
@@ -53,7 +54,7 @@ export default async function File({ mode, category, files }: any) {
               </div>
               <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
                 <p className="">
-                  {file.name}
+                  {file.reference.alt}
                   {fileType && (
                     <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
                   )}

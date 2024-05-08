@@ -15,37 +15,25 @@ export default function SiteHeader({ header }: { header: any }) {
 
   const path = usePathname();
 
-  useEffect(() => {
-    const header = document.querySelector("header");
+  // useEffect(() => {
+  //   const header = document.querySelector("header");
 
-    if (path === "/") {
-      if (window.scrollY > 0) {
-        header?.classList.add("bg-black");
-      }
+  //   if (path === "/") {
+  //     if (window.scrollY > 0) {
+  //       header?.classList.add("bg-black");
+  //     }
 
-      window.addEventListener("scroll", () => {
-        if (header) {
-          if (window.scrollY > 0) {
-            header.classList.add("bg-black");
-          } else {
-            header.classList.remove("bg-black");
-          }
-        }
-      });
-    }
-
-    return () => {
-      window.removeEventListener("scroll", () => {
-        if (header) {
-          if (window.scrollY > 0) {
-            header.classList.add("bg-black");
-          } else {
-            header.classList.remove("bg-black");
-          }
-        }
-      });
-    };
-  }, [path]);
+  //     window.addEventListener("scroll", () => {
+  //       if (header) {
+  //         if (window.scrollY > 0) {
+  //           header.classList.add("bg-black");
+  //         } else {
+  //           header.classList.remove("bg-black");
+  //         }
+  //       }
+  //     });
+  //   }
+  // }, [path]);
 
   const randomColour = () => {
     const colours = ["#4EBCC1", "#D9B21D"];
@@ -55,13 +43,19 @@ export default function SiteHeader({ header }: { header: any }) {
 
   return (
     <header
-      className={cn(path !== "/" ? "bg-black" : "fixed", "z-20 w-screen ")}
+      className={cn(
+        path !== "/" && "bg-black",
+        "z-20 w-screen transition-all ease-in-out fixed"
+      )}
       style={{
-        borderBottom: path !== "/" ? `10px solid ${randomColour()}` : "none",
+        borderBottom:
+          path !== "/" && !mobileMenuOpen
+            ? `10px solid ${randomColour()}`
+            : "none",
       }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className="flex">

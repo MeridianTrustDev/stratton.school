@@ -25,7 +25,7 @@ export default function Sidebar({ parent }: any) {
               className={cn(
                 url === pathname
                   ? "bg-[#4EBCC1] text-[#fff]"
-                  : "text-[#4C4C4C]",
+                  : "text-[#4C4C4C] hover:bg-[#e9e9e9]",
                 "uppercase font-bold px-2 py-1"
               )}
             >

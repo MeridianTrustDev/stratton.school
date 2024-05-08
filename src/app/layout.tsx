@@ -7,6 +7,8 @@ import type { Header as PayloadHeader } from "@/types/payload";
 import Footer from "@/components/Footer";
 import { getHeader } from "@/lib/payload/header";
 import { getFooter } from "@/lib/payload/footer";
+import Link from "next/link";
+import { Icons } from "@/components/Icons";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -45,6 +47,15 @@ export default async function RootLayout({
           {children}
         </main>
         <Footer />
+        <Link
+          href="https://meridiantrust.co.uk"
+          target="_blank"
+          className="flex flex-col gap-1 drop-shadow-lg hover:-translate-y-1 ease-in-out transition-all tracking-wide text-center text-sm fixed m-4 bottom-0 right-0 bg-white rounded-xl z-30 p-2 md:px-4 py-2 items-center justify-center"
+        >
+          <span className="hidden md:block">Proud to be part of</span>
+          <Icons.MeridianTrust className="w-36 hidden md:block" />
+          <Icons.MeridianTrustNoText className="w-10 md:hidden" />
+        </Link>
       </body>
     </html>
   );

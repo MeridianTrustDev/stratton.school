@@ -10,6 +10,8 @@ import MeridianTrust from "@/components/MeridianTrust";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import Head from "next/head";
+import { getHouses } from "@/lib/payload/houses";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Home | Stratton School",
@@ -41,30 +43,42 @@ export default async function Home() {
 
   const page = (await response.json()).docs[0];
 
+  const houses = await getHouses();
+
   return (
     <>
-      <div className="h-[50vh] md:h-[99vh] w-[100vw] relative bg-black">
-        <Link
-          href="https://meridiantrust.co.uk"
-          target="_blank"
-          className="hidden md:flex flex-col gap-1 drop-shadow-lg hover:-translate-y-1 ease-in-out transition-all tracking-wide text-center text-sm absolute m-4 bottom-0 left-0 bg-white rounded-xl z-10 px-4 py-2 items-center justify-center"
-        >
-          <span>Proud to be part of</span>
-          <Icons.MeridianTrust className="w-48" />
-        </Link>
-        <Link
-          href="https://meridiantrust.co.uk"
-          target="_blank"
-          className="flex w-full md:hidden flex-col gap-1 drop-shadow-lg tracking-wide text-center text-sm absolute bottom-0 left-0 z-10 px-4 py-2 items-center justify-center"
-        >
-          <span className="text-white">Proud to be part of</span>
-          <Icons.MeridianTrust className="w-48" variant="white" />
-        </Link>
+      <div className="h-[50vh] md:h-[60vh] w-[100vw] relative bg-black">
         <Hero slides={page.hero.slides} />
+        <div className="absolute bottom-0 flex w-full justify-center bg-white">
+          {page.hero.showHousePoints && (
+            <div className="relative w-full flex items-center left-0 text-white z-10 bottom-0">
+              {houses.map((house: any) => (
+                <Link
+                  key={house._id}
+                  className="flex flex-col md:flex-row justify-end overflow-hidden md:overflow-visible items-center h-14 group md:gap-6 basis-[100%] md:h-14 md:py-4 md:px-8 drop-shadow-lg max-w-[25%]"
+                  style={{ backgroundColor: `${house.houseColour}` }}
+                  href={`/our-house-system`}
+                >
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${house.logo.url}`}
+                    width={house.logo.width}
+                    height={house.logo.height}
+                    alt={house.logo.alt}
+                    className="hidden md:block opacity-30 md:opacity-100 md:-translate-y-10 object-contain drop-shadow-lg max-w-[100px] group-hover:-translate-y-12  ease-in-out transition-all absolute left-0 translate-x-2"
+                  />
+                  <h4 className="text-sm md:hidden lg:block md:text-3xl uppercase font-bold md:opacity-20">
+                    {house.name}
+                  </h4>
+                  <span className="text-white drop-shadow-lg font-bold text-2xl md:text-3xl text-right">
+                    {house.points}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="flex w-full items-end justify-center bg-white">
-        <Separator className="h-[10px] bg-[#D9B21D]" />
-      </div>
+
       <div className="w-full bg-white">
         <RenderBlocks layout={page.layout} />
       </div>
