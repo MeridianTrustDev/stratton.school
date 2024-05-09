@@ -8,9 +8,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import NavigationChildItem from "./NavigationChildItem";
 
-export default function NavigationItem({ item }: { item: any }) {
+export default function NavigationChildItem({ item }: { item: any }) {
   const [isShowing, setIsShowing] = React.useState(false);
 
   const hasChildren = item.children.length > 0;
@@ -20,32 +19,21 @@ export default function NavigationItem({ item }: { item: any }) {
   console.log(hasChildren);
 
   return (
-    <li
+    <div
       onMouseEnter={() => setIsShowing(true)}
       onMouseLeave={() => setIsShowing(false)}
     >
       {hasChildren ? (
         <Popover open={isShowing}>
-          <PopoverTrigger
-            className={cn(
-              isShowing
-                ? "text-[#D9B21D] transition-all border-b-2 border-[#D9B21D]"
-                : "text-white",
-              "flex items-center gap-x-1 text-lg font-bold uppercase leading-6 transition-all"
-            )}
-          >
+          <PopoverTrigger className="w-full flex justify-between">
             {item.label}
             <ChevronDown className="h-5 w-5 flex-none " aria-hidden="true" />
           </PopoverTrigger>
 
-          <PopoverContent>
+          <PopoverContent side="right">
             {item.children.length > 0 &&
               item.children.map((child: any) => {
                 child.url = navItemUrl(child);
-
-                if (child.children.length > 0) {
-                  return <NavigationChildItem key={child.id} item={child} />;
-                }
 
                 return (
                   <Link
@@ -68,6 +56,6 @@ export default function NavigationItem({ item }: { item: any }) {
           {item.label}
         </Link>
       )}
-    </li>
+    </div>
   );
 }

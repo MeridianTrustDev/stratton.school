@@ -41,9 +41,9 @@ export default async function Events() {
   }
 
   return (
-    <div className="w-full flex flex-1 flex-col antialiased px-4 pt-2 gap-2">
+    <div className="w-full flex flex-1 flex-col antialiased px-4 pt-2 md:pt-4 gap-2">
       <div className="flex items-center justify-between">
-        <h2 className="text-[#4C4C4C] uppercase font-extrabold text-2xl">
+        <h2 className="text-[#4C4C4C] uppercase font-extrabold text-3xl">
           Upcoming Events
         </h2>
         <Link
