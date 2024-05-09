@@ -41,23 +41,20 @@ export default async function Events() {
   }
 
   return (
-    <div className="w-full justify-center flex flex-col md:flex-row p-4 md:h-full items-center gap-4 md:gap-8">
-      <div className="w-full md:h-44 md:w-44 flex justify-between md:flex-col gap-2 md:justify-center">
-        <h2 className="uppercase font-bold text-3xl text-gray-700">
+    <div className="w-full flex flex-1 flex-col antialiased px-4 pt-2 gap-2">
+      <div className="flex items-center justify-between">
+        <h2 className="text-[#4C4C4C] uppercase font-extrabold text-2xl">
           Upcoming Events
         </h2>
-        <Separator className="hidden md:block h-[5px] bg-[#4EBCC1]" />
         <Link
           href="/events"
-          className="text-[#4EBCC1] font-bold text-sm uppercase flex gap-2 items-center group"
+          className="flex uppercase text-[#4EBCC1] font-bold group"
         >
-          View Calendar
+          More
           <ArrowRight className="text-[#4EBCC1] group-hover:translate-x-1 transition-all ease-in-out" />
         </Link>
       </div>
-      <div className="flex w-1/2 md:w-full">
-        <EventsCarousel events={events} />
-      </div>
+      <EventsCarousel events={events} />
     </div>
   );
 }

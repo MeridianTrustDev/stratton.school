@@ -6,8 +6,8 @@ import { Separator } from "./ui/separator";
 
 export default function MeridianTrust() {
   return (
-    <div className="w-full flex justify-center py-4 bg-white">
-      <div className="flex flex-col w-full max-w-7xl p-4 h-50 items-center gap-4">
+    <div className="w-full flex justify-center py-4 bg-[#F3F3F3] ">
+      <div className="flex flex-col w-full p-4 h-50 items-center gap-4">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center gap-8">
             <div className="flex flex-col gap-1 w-fit">
@@ -41,7 +41,7 @@ export default function MeridianTrust() {
             values, practices, curriculum approaches and operational systems.
           </p>
         </div>
-        <div className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:px-16">
           {values.map((value: any) => {
             return (
               <div

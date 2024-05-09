@@ -13,14 +13,14 @@ export default function EventsCarousel({ events }: any) {
           delay: 5000,
         }),
       ]}
-      className="flex w-full"
+      className="w-full"
     >
-      <CarouselContent className="flex w-full gap-4">
+      <CarouselContent className="gap-4">
         {events.map((event: any) => {
           return (
             <CarouselItem
               key={event.id}
-              className="bg-[#4EBCC1] w-52 h-36 p-4 flex flex-col justify-between"
+              className="bg-[#4EBCC1] basis-[49%] md:basis-[33%] group h-36 p-2 justify-between flex flex-col"
             >
               <h3 className="text-white font-bold text-3xl uppercase">
                 {event.title}

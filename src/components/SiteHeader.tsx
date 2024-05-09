@@ -40,7 +40,7 @@ export default function SiteHeader({ header }: { header: any }) {
       className={cn(
         path !== "/" && "bg-black border-[#D9B21D] border-b-[10px]",
         (scrollY > 0 || mobileMenuOpen) && "bg-black",
-        "z-20 w-screen transition-all ease-in-out fixed "
+        "z-20 w-screen transition-colors ease-in-out fixed "
       )}
     >
       <nav

@@ -46,6 +46,7 @@ export default async function File({ mode, category, files }: any) {
                   className={cn(
                     fileType === "pdf" && `text-red-700`,
                     fileType.startsWith("doc") && `text-blue-500`,
+                    fileType.startsWith("docx") && `text-blue-500`,
                     fileType.startsWith("xls") && `text-green-500`,
                     fileType.startsWith("csv") && `text-green-500`,
                     "w-[30px]"

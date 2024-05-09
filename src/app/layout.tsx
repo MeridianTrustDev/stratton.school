@@ -9,6 +9,7 @@ import { getHeader } from "@/lib/payload/header";
 import { getFooter } from "@/lib/payload/footer";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
+import Head from "next/head";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -42,6 +43,9 @@ export default async function RootLayout({
       <body
         className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
       >
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <SiteHeader header={siteHeader} />
         <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
           {children}
