@@ -54,8 +54,8 @@ export default async function Home() {
             <div className="relative w-full flex items-center left-0 text-white z-10 bottom-0">
               {houses.map((house: any) => (
                 <Link
-                  key={house._id}
-                  className="flex flex-col md:flex-row justify-end overflow-hidden md:overflow-visible items-center h-14 group md:gap-6 basis-[100%] md:h-14 md:py-4 md:px-8 drop-shadow-lg max-w-[25%]"
+                  key={house.id}
+                  className="flex flex-col md:flex-row justify-end overflow-hidden md:overflow-visible items-center h-14 group md:gap-6 basis-[100%] md:h-14 md:py-4 md:px-8 max-w-[25%] relative"
                   style={{ backgroundColor: `${house.houseColour}` }}
                   href={`/our-house-system`}
                 >
@@ -64,12 +64,12 @@ export default async function Home() {
                     width={house.logo.width}
                     height={house.logo.height}
                     alt={house.logo.alt}
-                    className="hidden md:block opacity-30 md:opacity-100 md:-translate-y-10 object-contain drop-shadow-lg max-w-[100px] group-hover:-translate-y-12  ease-in-out transition-all absolute left-0 translate-x-2"
+                    className="hidden md:block opacity-30 md:opacity-100 md:-translate-y-10 object-contain max-w-[100px] group-hover:-translate-y-12  ease-in-out transition-all absolute left-0 translate-x-2"
                   />
                   <h4 className="text-sm md:hidden lg:block md:text-3xl uppercase font-bold md:opacity-20">
                     {house.name}
                   </h4>
-                  <span className="text-white drop-shadow-lg font-bold text-2xl md:text-3xl text-right">
+                  <span className="text-white font-bold text-2xl md:text-3xl text-right">
                     {house.points}
                   </span>
                 </Link>
@@ -79,7 +79,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
+      <div className="w-full h-[40vh] bg-[#F3F3F3]">
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />

@@ -7,6 +7,7 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import { ArrowRight } from "lucide-react";
 import { format } from "date-fns";
+import EventsCarousel from "./EventsCarousel";
 
 export default async function Events() {
   let events = null;
@@ -40,41 +41,22 @@ export default async function Events() {
   }
 
   return (
-    <div className="w-full bg-[#F3F3F3] flex justify-center">
-      <div className="flex w-full max-w-7xl p-4 h-50 items-center gap-4">
-        <div className="w-52 h-44 flex flex-col gap-2 justify-center">
-          <h2 className="uppercase font-bold text-3xl text-gray-700">
-            Upcoming Events
-          </h2>
-          <Separator className="h-[5px] bg-[#4EBCC1]" />
-          <Link
-            href="/events"
-            className="text-[#4EBCC1] font-bold text-sm uppercase flex gap-2 items-center group"
-          >
-            View Calendar
-            <ArrowRight className="text-[#4EBCC1] group-hover:translate-x-1 transition-all ease-in-out" />
-          </Link>
-        </div>
-        <div className="flex w-full">
-          {events.map((event: any) => {
-            return (
-              <div
-                key={event.id}
-                className="bg-[#4EBCC1] w-52 h-44 p-4 flex flex-col justify-between"
-              >
-                <h3 className="text-white font-bold text-3xl uppercase">
-                  {event.title}
-                </h3>
-                <p className="uppercase flex gap-1 text-4xl font-bold self-end text-white">
-                  {format(new Date(event.start.date), "d")}
-                  <span className="text-[#31787B]">
-                    {format(new Date(event.start.date), "MMM")}
-                  </span>
-                </p>
-              </div>
-            );
-          })}
-        </div>
+    <div className="w-full justify-center flex flex-col md:flex-row p-4 md:h-full items-center gap-4 md:gap-8">
+      <div className="w-full md:h-44 md:w-44 flex justify-between md:flex-col gap-2 md:justify-center">
+        <h2 className="uppercase font-bold text-3xl text-gray-700">
+          Upcoming Events
+        </h2>
+        <Separator className="hidden md:block h-[5px] bg-[#4EBCC1]" />
+        <Link
+          href="/events"
+          className="text-[#4EBCC1] font-bold text-sm uppercase flex gap-2 items-center group"
+        >
+          View Calendar
+          <ArrowRight className="text-[#4EBCC1] group-hover:translate-x-1 transition-all ease-in-out" />
+        </Link>
+      </div>
+      <div className="flex w-1/2 md:w-full">
+        <EventsCarousel events={events} />
       </div>
     </div>
   );

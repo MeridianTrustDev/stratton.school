@@ -5,8 +5,8 @@ import React from "react";
 
 export default function Buttons({ buttons }: any) {
   return (
-    <div className="flex w-full items-center justify-center  p-4">
-      <div className="flex flex-col w-full sm:flex-row max-w-7xl gap-4">
+    <div className="flex w-full items-center justify-center bg-white p-4">
+      <div className="flex flex-col w-full sm:flex-row gap-4">
         {buttons.map((button: any, index: any) => {
           return (
             <Link

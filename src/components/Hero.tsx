@@ -15,7 +15,7 @@ export default function Hero({ slides }: any) {
         rewind: true,
         pagination: false,
         arrows: false,
-        autoplay: false,
+        autoplay: true,
         interval: 5000,
         pauseOnHover: false,
         pauseOnFocus: false,

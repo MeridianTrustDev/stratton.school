@@ -26,7 +26,7 @@ export default function NavigationItem({ item }: { item: any }) {
               isShowing
                 ? "text-[#D9B21D] transition-all border-b-2 border-[#D9B21D]"
                 : "text-white",
-              "flex items-center gap-x-1 text-md font-bold uppercase leading-6 transition-all"
+              "flex items-center gap-x-1 text-lg font-bold uppercase leading-6 transition-all"
             )}
           >
             {item.label}
@@ -53,7 +53,7 @@ export default function NavigationItem({ item }: { item: any }) {
                       <Disclosure as="div" key={child.id}>
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex justify-between items-center rounded-lg text-left px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
+                            <Disclosure.Button className="flex justify-between items-center rounded-lg text-left px-3 py-2 text-md font-semibold leading-6 text-gray-900 hover:bg-gray-50 w-full">
                               {child.label}
                               <ChevronDown
                                 className={cn(
@@ -75,7 +75,7 @@ export default function NavigationItem({ item }: { item: any }) {
                                       key={childChild.id}
                                       onClick={() => setIsShowing(false)}
                                       href={childChild.url}
-                                      className="block rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                                      className="block rounded-lg pl-8 py-2 text-md font-semibold leading-6 text-gray-900 hover:bg-gray-50"
                                     >
                                       {childChild.label}
                                     </Link>
@@ -93,7 +93,7 @@ export default function NavigationItem({ item }: { item: any }) {
                       key={child.id}
                       href={child.url}
                       onClick={() => setIsShowing(false)}
-                      className="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                      className="block rounded-lg px-3 py-2 text-md font-semibold leading-6 text-gray-900 hover:bg-gray-50"
                     >
                       {child.label}
                     </Link>
@@ -105,7 +105,7 @@ export default function NavigationItem({ item }: { item: any }) {
       ) : (
         <Link
           href={item.url}
-          className="flex items-center cursor-pointer gap-x-1 text-md font-bold uppercase leading-6 text-white border-b-2 border-transparent hover:text-[#D9B21D] transition-all hover:border-b-2 hover:border-[#D9B21D]"
+          className="flex items-center cursor-pointer gap-x-1 text-lg font-bold uppercase leading-6 text-white border-b-2 border-transparent hover:text-[#D9B21D] transition-all hover:border-b-2 hover:border-[#D9B21D]"
         >
           {item.label}
         </Link>

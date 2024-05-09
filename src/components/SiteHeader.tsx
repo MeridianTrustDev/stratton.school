@@ -11,48 +11,37 @@ import { cn } from "@/lib/utils";
 
 export default function SiteHeader({ header }: { header: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
   const primaryNavItems = header.primaryNavigation.navItems;
 
   const path = usePathname();
 
-  // useEffect(() => {
-  //   const header = document.querySelector("header");
+  useEffect(() => {
+    // Function to persist scroll position on page refresh
+    const handleScrollPersist = () => {
+      setScrollY(window.scrollY);
+    };
 
-  //   if (path === "/") {
-  //     if (window.scrollY > 0) {
-  //       header?.classList.add("bg-black");
-  //     }
+    // Add scroll event listener to persist scroll position
+    window.addEventListener("scroll", handleScrollPersist);
 
-  //     window.addEventListener("scroll", () => {
-  //       if (header) {
-  //         if (window.scrollY > 0) {
-  //           header.classList.add("bg-black");
-  //         } else {
-  //           header.classList.remove("bg-black");
-  //         }
-  //       }
-  //     });
-  //   }
-  // }, [path]);
+    // Set scroll position on component mount
+    setScrollY(window.scrollY);
 
-  const randomColour = () => {
-    const colours = ["#4EBCC1", "#D9B21D"];
-
-    return colours[Math.floor(Math.random() * colours.length)];
-  };
+    // Remove scroll event listener when component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScrollPersist);
+    };
+  }, []); // Run effect only once on component mount
 
   return (
     <header
       className={cn(
-        path !== "/" && "bg-black",
-        "z-20 w-screen transition-all ease-in-out fixed"
+        path !== "/" && "bg-black border-[#D9B21D] border-b-[10px]",
+        (scrollY > 0 || mobileMenuOpen) && "bg-black",
+        "z-20 w-screen transition-all ease-in-out fixed "
       )}
-      style={{
-        borderBottom:
-          path !== "/" && !mobileMenuOpen
-            ? `10px solid ${randomColour()}`
-            : "none",
-      }}
     >
       <nav
         className="mx-auto flex items-center justify-between p-6 lg:px-8"
