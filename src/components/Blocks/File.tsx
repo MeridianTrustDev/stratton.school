@@ -54,7 +54,7 @@ export default async function File({ mode, category, files }: any) {
               </div>
               <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
                 <p className="">
-                  {file.reference.alt}
+                  {mode === "byCategory" ? file.alt : file.reference.alt}
                   {fileType && (
                     <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
                   )}

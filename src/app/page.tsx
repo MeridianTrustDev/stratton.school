@@ -47,7 +47,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="h-[50vh] md:h-[60vh] w-[100vw] relative bg-black">
+      <div className="h-[50vh] md:h-[80vh] w-[100vw] relative bg-black">
         <Hero slides={page.hero.slides} />
         <div className="absolute bottom-0 flex w-full justify-center bg-white">
           {page.hero.showHousePoints && (
@@ -79,7 +79,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="w-full h-[40vh] bg-[#F3F3F3]">
+      <div className="h-[20vh]">
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />
