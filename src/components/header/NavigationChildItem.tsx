@@ -25,9 +25,15 @@ export default function NavigationChildItem({ item }: { item: any }) {
     >
       {hasChildren ? (
         <Popover open={isShowing}>
-          <PopoverTrigger className="w-full flex justify-between">
+          <PopoverTrigger className="text-left flex w-full justify-between group items-center rounded-lg px-3 py-2 text-md font-semibold leading-6 text-gray-900 hover:bg-gray-50 focus:outline-none">
             {item.label}
-            <ChevronDown className="h-5 w-5 flex-none " aria-hidden="true" />
+            <ChevronDown
+              className={cn(
+                isShowing && "-rotate-90",
+                "h-5 w-5 flex-none group-hover:-rotate-90 transition-all ease-in-out"
+              )}
+              aria-hidden="true"
+            />
           </PopoverTrigger>
 
           <PopoverContent side="right">

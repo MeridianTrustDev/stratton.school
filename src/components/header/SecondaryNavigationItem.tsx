@@ -1,23 +1,23 @@
 import { cn, navItemUrl } from "@/lib/utils";
-import { Transition } from "@headlessui/react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import React, { Fragment, useRef } from "react";
+import React from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import NavigationChildItem from "./NavigationChildItem";
+import { icons } from "lucide-react";
 
-export default function NavigationItem({ item }: { item: any }) {
+export default function SecondaryNavigationItem({ item }: { item: any }) {
   const [isShowing, setIsShowing] = React.useState(false);
 
   const hasChildren = item.children.length > 0;
 
   item.url = navItemUrl(item);
 
-  console.log(hasChildren);
+  const Icon = icons[item.icon as keyof typeof icons];
 
   return (
     <div
@@ -28,10 +28,9 @@ export default function NavigationItem({ item }: { item: any }) {
         <Popover open={isShowing}>
           <PopoverTrigger asChild>
             <Link
+              style={{ backgroundColor: item.color }}
               className={cn(
-                isShowing
-                  ? "text-[#D9B21D] transition-all border-b-2 border-[#D9B21D]"
-                  : "text-white",
+                isShowing ? "transition-all" : "text-white",
                 "flex items-center gap-x-1 text-lg font-bold uppercase leading-6 transition-all focus:outline-none"
               )}
               href={item.url}
@@ -66,9 +65,11 @@ export default function NavigationItem({ item }: { item: any }) {
       ) : (
         <Link
           href={item.url}
-          className="flex items-center cursor-pointer gap-x-1 text-lg font-bold uppercase leading-6 text-white border-b-2 border-transparent hover:text-[#D9B21D] transition-all hover:border-b-2 hover:border-[#D9B21D]"
+          style={{ backgroundColor: item.color }}
+          className="flex h-10 min-w-10 items-center justify-center px-2 py-2 cursor-pointer gap-2 text-sm font-semibold uppercase leading-6 text-white border-b-2 border-transparent transition-all group"
         >
-          {item.label}
+          {Icon && <Icon className="w-5 h-5" />}
+          {item.showLabel && item.label}
         </Link>
       )}
     </div>

@@ -8,6 +8,7 @@ import Media from "@/components/Blocks/Media";
 import MediaAndText from "@/components/Blocks/MediaAndText";
 import News from "@/components/Blocks/News";
 import Text from "@/components/Blocks/Text";
+import Tiles from "@/components/Blocks/Tiles";
 import Vacancies from "@/components/Blocks/Vacancies";
 
 export const blocks = {
@@ -21,5 +22,6 @@ export const blocks = {
   mediaBlock: Media,
   newsBlock: News,
   text: Text,
+  tiles: Tiles,
   vacancies: Vacancies,
 };

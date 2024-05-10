@@ -26,7 +26,7 @@ export default async function Page() {
   const news = await getNews();
 
   return (
-    <div className="max-w-7xl p-4 w-full flex flex-col md:justify-start gap-4 bg-white">
+    <div className="max-w-7xl pt-40  p-4 w-full flex flex-col md:justify-start gap-4 bg-white">
       <Head>
         <link
           rel="canonical"

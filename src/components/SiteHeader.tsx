@@ -14,6 +14,9 @@ export default function SiteHeader({ header }: { header: any }) {
   const [scrollY, setScrollY] = useState(0);
 
   const primaryNavItems = header.primaryNavigation.navItems;
+  const secondaryNavItems = header.secondaryNavigation
+    ? header.secondaryNavigation.navItems
+    : [];
 
   const path = usePathname();
 
@@ -38,7 +41,9 @@ export default function SiteHeader({ header }: { header: any }) {
   return (
     <header
       className={cn(
-        path !== "/" && "bg-black border-[#D9B21D] border-b-[10px]",
+        path !== "/" &&
+          !mobileMenuOpen &&
+          "bg-black border-[#D9B21D] border-b-[10px]",
         (scrollY > 0 || mobileMenuOpen) && "bg-black",
         "z-20 w-screen fixed"
       )}
@@ -78,13 +83,17 @@ export default function SiteHeader({ header }: { header: any }) {
             )}
           </button>
         </div>
-        <DesktopNavigation primaryNavItems={primaryNavItems} />
+        <DesktopNavigation
+          primaryNavItems={primaryNavItems}
+          secondaryNavItems={secondaryNavItems}
+        />
       </nav>
       <MobileNavigation
         header={header}
         primaryNavItems={primaryNavItems}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
+        // secondaryNavItems={secondaryNavItems}
       />
     </header>
   );

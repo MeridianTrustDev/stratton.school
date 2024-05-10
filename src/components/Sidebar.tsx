@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-export default function Sidebar({ parent }: any) {
+export default function Sidebar({ parent, className }: any) {
   const pathname = usePathname();
 
   return (
-    <div className="w-full h-fit bg-[#F3F3F3] px-4 py-2">
+    <div className={cn(className, "w-full h-fit bg-[#F3F3F3] px-4 py-2")}>
       <div>
         <h3 className="font-bold uppercase text-[#4C4C4C] text-2xl">
           {parent.label}

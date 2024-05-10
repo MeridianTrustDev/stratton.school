@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Stratton School",
   },
   description:
-    "Stratton School is a mixed British upper school and sixth form located in Biggleswade, Bedfordshire. It is an academy school, governed by Meridian Trust.",
+    "Stratton School is a mixed British secondary school and sixth form located in Biggleswade, Bedfordshire. It is an academy school, governed by Meridian Trust.",
   verification: {
     google: "",
   },

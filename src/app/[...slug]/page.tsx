@@ -48,7 +48,7 @@ export default async function Page({ params: { slug } }: PageParams) {
   }
 
   return (
-    <div className="max-w-7xl pt-40 p-4 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
+    <div className="pt-40 p-4 px-10 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
       <div className="w-full md:w-1/4 flex flex-col gap-4 z-10">
         {page.featuredImage && (
           <Image
@@ -59,7 +59,9 @@ export default async function Page({ params: { slug } }: PageParams) {
             className="object-contain"
           />
         )}
-        {parent && <Sidebar parent={parent} />}
+        {parent && (
+          <Sidebar className={`hidden md:flex flex-col`} parent={parent} />
+        )}
       </div>
       <div className="w-full md:w-3/4 flex flex-col gap-4 z-10">
         <Breadcrumb>
@@ -70,8 +72,11 @@ export default async function Page({ params: { slug } }: PageParams) {
             <BreadcrumbSeparator />
             {page.breadcrumbs.length > 0 ? (
               page.breadcrumbs.map((crumb: any, index: number) => (
-                <div className="flex gap-1.5 sm:gap-2.5 items-center justify-center">
-                  <BreadcrumbItem key={`${crumb.label}-${index}`}>
+                <div
+                  key={`${crumb.label}-${index}`}
+                  className="flex gap-1.5 sm:gap-2.5 items-center justify-center"
+                >
+                  <BreadcrumbItem>
                     <BreadcrumbLink href={`${crumb.url}`}>
                       {crumb.label}
                     </BreadcrumbLink>
@@ -94,6 +99,9 @@ export default async function Page({ params: { slug } }: PageParams) {
         <RenderBlocks layout={page.layout} />
       </div>
       <Icons.Stratton className="absolute w-[80vh] hidden md:block md:top-10 left-0 opacity-[0.02]" />
+      {parent && (
+        <Sidebar className={`flex flex-col md:hidden`} parent={parent} />
+      )}
     </div>
   );
 }
