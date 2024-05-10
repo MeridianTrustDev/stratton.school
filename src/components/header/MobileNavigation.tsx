@@ -4,17 +4,19 @@ import { Dialog, Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, X, icons } from "lucide-react";
 import { cn, navItemUrl } from "@/lib/utils";
 
 export default function MobileNavigation({
   header,
   primaryNavItems,
+  secondaryNavItems,
   mobileMenuOpen,
   setMobileMenuOpen,
 }: {
   header: any;
   primaryNavItems: any;
+  secondaryNavItems: any;
   mobileMenuOpen: any;
   setMobileMenuOpen: any;
 }) {
@@ -26,7 +28,7 @@ export default function MobileNavigation({
       onClose={setMobileMenuOpen}
     >
       <div className="fixed inset-0 z-10" />
-      <Dialog.Panel className="fixed inset-y-0 mt-20 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <Dialog.Panel className="fixed inset-y-0 mt-20 gap-4 flex flex-col right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="mt-6 flow-root">
           {primaryNavItems.length > 0 &&
             primaryNavItems.map((item: any) => {
@@ -122,6 +124,27 @@ export default function MobileNavigation({
                     </Link>
                   )}
                 </div>
+              );
+            })}
+        </div>
+        <div className="fixed bottom-0 left-0 w-full flex items-center justify-center flex-wrap">
+          {secondaryNavItems.length > 0 &&
+            secondaryNavItems.map((item: any) => {
+              item.url = navItemUrl(item);
+
+              const Icon = icons[item.icon as keyof typeof icons];
+
+              return (
+                <Link
+                  key={item.id}
+                  onClick={() => setMobileMenuOpen(false)}
+                  href={item.url}
+                  style={{ backgroundColor: item.color }}
+                  className="flex flex-1 items-center justify-center gap-2  py-2 px-3 text-base font-semibold text-white"
+                >
+                  {Icon && <Icon className="w-5 h-5" />}
+                  {item.label}
+                </Link>
               );
             })}
         </div>

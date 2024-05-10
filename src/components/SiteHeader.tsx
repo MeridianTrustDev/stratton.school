@@ -93,7 +93,7 @@ export default function SiteHeader({ header }: { header: any }) {
         primaryNavItems={primaryNavItems}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
-        // secondaryNavItems={secondaryNavItems}
+        secondaryNavItems={secondaryNavItems}
       />
     </header>
   );
