@@ -79,7 +79,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="h-[50vh] md:h-[25vh] w-full">
+      <div className="h-[50vh] md:h-[220px] w-full">
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />

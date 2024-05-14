@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Columns({ columns }: any) {
   return (
-    <div className="flex flex-col md:flex-row gap-2">
+    <div className="flex flex-col md:flex-row gap-2 h-full">
       {columns &&
         columns.length > 0 &&
         columns.map((column: any, index: number) => {

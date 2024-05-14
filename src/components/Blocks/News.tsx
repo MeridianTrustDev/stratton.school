@@ -9,7 +9,7 @@ export default async function News() {
   const news = await getNews();
 
   return (
-    <div className="w-full flex flex-1 flex-col antialiased px-4 pt-2 md:pt-4 gap-2">
+    <div className="w-full flex flex-col antialiased px-4 pt-2 md:pt-4 gap-2">
       <div className="flex items-center gap-4 justify-between">
         <h2 className="text-[#4C4C4C] uppercase font-extrabold text-3xl">
           Latest News
