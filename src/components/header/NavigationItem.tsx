@@ -17,8 +17,6 @@ export default function NavigationItem({ item }: { item: any }) {
 
   item.url = navItemUrl(item);
 
-  console.log(hasChildren);
-
   return (
     <div
       onMouseEnter={() => setIsShowing(true)}

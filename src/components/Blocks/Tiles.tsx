@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 export default function Tiles({ tiles }: any) {
-  console.log(tiles);
   return (
     <div className="flex flex-wrap gap-4">
       {tiles.map((tile: any, index: any) => {

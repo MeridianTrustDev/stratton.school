@@ -25,10 +25,6 @@ export const getPage = async (slug: string) => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=2`
     );
 
-    console.log(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=2`
-    );
-
     return (await response.json()).docs[0];
   } catch (error) {
     console.log(error);

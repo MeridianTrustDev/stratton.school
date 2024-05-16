@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export default function MediaAndText(props: any) {
-  console.log(props);
   return (
     <div
       className={
