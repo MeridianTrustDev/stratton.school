@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { payload } from "@/lib/payload";
 import SiteHeader from "@/components/SiteHeader";
 import { Poppins } from "next/font/google";
 import type { Header as PayloadHeader } from "@/types/payload";
 import Footer from "@/components/Footer";
 import { getHeader } from "@/lib/payload/header";
-import { getFooter } from "@/lib/payload/footer";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
 import Head from "next/head";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -43,9 +42,6 @@ export default async function RootLayout({
       <body
         className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
       >
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
         <SiteHeader header={siteHeader} />
         <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
           {children}
@@ -61,6 +57,7 @@ export default async function RootLayout({
           <Icons.MeridianTrustNoText className="w-10 md:hidden" />
         </Link>
       </body>
+      <GoogleAnalytics gaId="G-SSGGNQYWQL" />
     </html>
   );
 }
