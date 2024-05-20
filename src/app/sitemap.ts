@@ -7,6 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       "tenant.name": {
         equals: "Stratton School",
       },
+      limit: 1000,
     };
 
     const stringifiedQuery = qs.stringify(

@@ -180,7 +180,7 @@ export async function generateStaticParams() {
   );
 
   const pages = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=1000`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=10000`
   )?.then((res) => res.json()?.then((data) => data.docs));
 
   if (pages && Array.isArray(pages) && pages.length > 0) {
