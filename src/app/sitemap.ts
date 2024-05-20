@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&limit=1000`,
       {
         next: {
           tags: ["sitemap"],
@@ -34,6 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(updatedAt),
       })
     );
+
+    console.log(pageEntries);
 
     return pageEntries;
   } catch (error) {
