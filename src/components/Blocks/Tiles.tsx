@@ -19,7 +19,7 @@ export default function Tiles({ tiles }: any) {
             style={{
               background: tile.backgroundColour || "#4EBCC1",
             }}
-            className="text-white group uppercase h-32 w-32 hover:scale-[102%] transition-all ease-in-out font-semibold text-base flex flex-col items-center justify-center gap-2 p-4 rounded-lg"
+            className="text-white text-center group uppercase h-32 w-32 hover:scale-[102%] transition-all ease-in-out font-semibold text-base flex flex-col items-center justify-center gap-2 p-4 rounded-lg"
           >
             {Icon && <Icon className="w-10 h-10" />}
             <span className="">{tile.text}</span>
