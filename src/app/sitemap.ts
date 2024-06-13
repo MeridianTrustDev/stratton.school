@@ -35,8 +35,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })
     );
 
-    console.log(pageEntries);
-
     return pageEntries;
   } catch (error) {
     console.log(error);

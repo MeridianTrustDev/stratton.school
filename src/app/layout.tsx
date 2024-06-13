@@ -47,7 +47,7 @@ export default async function RootLayout({
           {children}
         </main>
         <Footer />
-        <Link
+        {/* <Link
           href="https://meridiantrust.co.uk"
           target="_blank"
           className="flex flex-col gap-1 drop-shadow-lg hover:-translate-y-1 ease-in-out transition-all tracking-wide text-center text-sm fixed m-4 bottom-0 right-0 bg-white rounded-xl z-30 p-2 md:px-4 py-2 items-center justify-center"
@@ -55,7 +55,7 @@ export default async function RootLayout({
           <span className="hidden md:block">Proud to be part of</span>
           <Icons.MeridianTrust className="w-36 hidden md:block" />
           <Icons.MeridianTrustNoText className="w-10 md:hidden" />
-        </Link>
+        </Link> */}
       </body>
       <GoogleAnalytics gaId="G-SSGGNQYWQL" />
     </html>

@@ -61,7 +61,7 @@ export default async function Page({ params: { slug } }: PageParams) {
           <Sidebar className={`hidden md:flex flex-col`} parent={parent} />
         )}
       </div>
-      <div className="w-full md:w-3/4 flex flex-col gap-4 z-10">
+      <div className="w-full md:w-3/4 flex flex-col z-10">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -93,7 +93,9 @@ export default async function Page({ params: { slug } }: PageParams) {
             )}
           </BreadcrumbList>
         </Breadcrumb>
-        <h1 className="text-4xl font-bold uppercase text-left">{page.title}</h1>
+        <h1 className="text-4xl font-bold uppercase text-left my-4">
+          {page.title}
+        </h1>
         <RenderBlocks layout={page.layout} />
       </div>
       <Icons.Stratton className="absolute w-[80vh] hidden md:block md:top-10 left-0 opacity-[0.02]" />

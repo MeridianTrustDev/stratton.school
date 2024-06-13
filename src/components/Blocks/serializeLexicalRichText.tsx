@@ -1,220 +1,251 @@
-import escapeHTML from "escape-html";
-import Image from "next/image";
-import Link from "next/link";
-import React, { Fragment } from "react";
-import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import type { SerializedListItemNode, SerializedListNode } from "@lexical/list";
+import type { SerializedHeadingNode } from "@lexical/rich-text";
+import type {
+  LinkFields,
+  SerializedLinkNode,
+} from "@payloadcms/richtext-lexical";
+import type {
+  SerializedElementNode,
+  SerializedLexicalNode,
+  SerializedTextNode,
+} from "lexical";
 
-export const IS_BOLD = 1;
-export const IS_ITALIC = 1 << 1;
-export const IS_STRIKETHROUGH = 1 << 2;
-export const IS_UNDERLINE = 1 << 3;
-export const IS_CODE = 1 << 4;
-export const IS_SUBSCRIPT = 1 << 5;
-export const IS_SUPERSCRIPT = 1 << 6;
-export const IS_HIGHLIGHT = 1 << 7;
+import {
+  IS_BOLD,
+  IS_CODE,
+  IS_ITALIC,
+  IS_STRIKETHROUGH,
+  IS_SUBSCRIPT,
+  IS_SUPERSCRIPT,
+  IS_UNDERLINE,
+} from "./nodeFormat";
+import { Fragment } from "react";
+import React from "react";
+import { CMSLink } from "../Link";
+import { cn } from "@/lib/utils";
 
-function generateTextAlign(node: any) {
-  if (node.format === "right") return "text-right";
-  if (node.format === "center") return "text-center";
-  else return "";
+interface Props {
+  nodes: SerializedLexicalNode[];
 }
 
-export default function serializeLexicalRichText({
-  children,
-  customClassNames,
-  parentNode = {},
-}: {
-  children: any;
-  customClassNames?: Record<string, string>;
-  parentNode?: any;
-}) {
-  return children
-    ?.map((node: any, i: number) => {
-      const classNames = {
-        h1: "mt-6 text-5xl font-bold",
-        h2: "mt-5 text-4xl font-bold",
-        h3: "mt-4 text-3xl font-bold",
-        h4: "mt-3 text-2xl font-bold",
-        h5: "mt-2 text-xl font-bold",
-        h6: "mt-1 text-lg font-semibold",
-        p: "text-base my-2",
-        ul: "list-disc list-inside",
-        ol: "list-decimal list-inside",
-        li: "list-item list-inside",
-        blockquote: "font-bold text-lg text-gray-600",
-        a: "text-blue-500 underline",
-      };
+export function serializeLexical({ nodes }: Props): JSX.Element {
+  return (
+    <Fragment>
+      {nodes?.map((_node, index) => {
+        console.log(_node.type);
 
-      if (node.type === "upload") {
-        if (node.value.mimeType.includes("image")) {
-          return (
-            <Image
-              src={process.env.NEXT_PUBLIC_BACKEND_URL + node.value.url}
-              alt={node.value.alt}
-              key={i}
-              width={node.value.width}
-              height={node.value.height}
-              className="py-2"
-            />
-          );
-        }
-      }
+        if (_node.type === "text") {
+          const node = _node as SerializedTextNode;
+          let text = <React.Fragment key={index}>{node.text}</React.Fragment>;
+          if (node.format & IS_BOLD) {
+            text = <strong key={index}>{text}</strong>;
+          }
+          if (node.format & IS_ITALIC) {
+            text = <em key={index}>{text}</em>;
+          }
+          if (node.format & IS_STRIKETHROUGH) {
+            text = (
+              <span key={index} style={{ textDecoration: "line-through" }}>
+                {text}
+              </span>
+            );
+          }
+          if (node.format & IS_UNDERLINE) {
+            text = (
+              <span key={index} style={{ textDecoration: "underline" }}>
+                {text}
+              </span>
+            );
+          }
+          if (node.format & IS_CODE) {
+            text = <code key={index}>{node.text}</code>;
+          }
+          if (node.format & IS_SUBSCRIPT) {
+            text = <sub key={index}>{text}</sub>;
+          }
+          if (node.format & IS_SUPERSCRIPT) {
+            text = <sup key={index}>{text}</sup>;
+          }
 
-      if (node.type === "text") {
-        let text = node.text ? (
-          <span className="">{node.text}</span>
-        ) : (
-          <span className="opacity-0">&nbsp;</span>
-        );
-
-        if (node.format & IS_BOLD) {
-          text = (
-            <strong className="font-bold" key={i}>
-              {text}
-            </strong>
-          );
+          return text;
         }
 
-        if (node.format & IS_CODE) {
-          text = <code key={i}>{text}</code>;
+        if (_node == null) {
+          return null;
         }
 
-        if (node.format & IS_ITALIC) {
-          text = <em key={i}>{text}</em>;
+        // NOTE: Hacky fix for
+        // https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
+        // which does not return checked: false (only true - i.e. there is no prop for false)
+        const serializedChildrenFn = (
+          node: SerializedElementNode
+        ): JSX.Element | null => {
+          if (node.children == null) {
+            return null;
+          } else {
+            if (
+              node?.type === "list" &&
+              (node as SerializedListNode)?.listType === "check"
+            ) {
+              for (const item of node.children) {
+                if ("checked" in item) {
+                  if (!item?.checked) {
+                    item.checked = false;
+                  }
+                }
+              }
+              return serializeLexical({ nodes: node.children });
+            } else {
+              return serializeLexical({ nodes: node.children });
+            }
+          }
+        };
+
+        const serializedChildren =
+          "children" in _node
+            ? serializedChildrenFn(_node as SerializedElementNode)
+            : "";
+
+        if (_node.type === "block") {
+          // todo: fix types
+
+          //@ts-expect-error
+          const block = _node.fields;
+
+          //@ts-expect-error
+          const blockType = _node.fields?.blockType;
+
+          if (!block || !blockType) {
+            return null;
+          }
+        } else {
+          switch (_node.type) {
+            case "linebreak": {
+              return <br className="" key={index} />;
+            }
+            case "paragraph": {
+              return (
+                <p className="text-base" key={index}>
+                  {serializedChildren}
+                </p>
+              );
+            }
+            case "heading": {
+              const node = _node as SerializedHeadingNode;
+
+              type Heading = Extract<
+                keyof JSX.IntrinsicElements,
+                "h1" | "h2" | "h3"
+              >;
+              const Tag = node?.tag as Heading;
+
+              let styles;
+
+              switch (Tag) {
+                case "h1":
+                  styles = "text-4xl font-bold text-gray-900";
+                  break;
+                case "h2":
+                  styles = "text-3xl font-semibold text-gray-800";
+                  break;
+                case "h3":
+                  styles = "text-2xl font-medium text-gray-700";
+                  break;
+                default:
+                  break;
+              }
+
+              return (
+                <Tag className={cn("mt-2", styles)} key={index}>
+                  {serializedChildren}
+                </Tag>
+              );
+            }
+            case "list": {
+              const node = _node as SerializedListNode;
+
+              type List = Extract<keyof JSX.IntrinsicElements, "ol" | "ul">;
+              const Tag = node?.tag as List;
+              return (
+                <Tag className="list " key={index}>
+                  {serializedChildren}
+                </Tag>
+              );
+            }
+            case "listitem": {
+              const node = _node as SerializedListItemNode;
+
+              if (node?.checked != null) {
+                return (
+                  <li
+                    aria-checked={node.checked ? "true" : "false"}
+                    className={` ${node.checked ? "" : ""}`}
+                    key={index}
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+                    role="checkbox"
+                    tabIndex={-1}
+                    value={node?.value}
+                  >
+                    {serializedChildren}
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={index} value={node?.value}>
+                    {serializedChildren}
+                  </li>
+                );
+              }
+            }
+            case "quote": {
+              return (
+                <blockquote className="" key={index}>
+                  {serializedChildren}
+                </blockquote>
+              );
+            }
+            case "link": {
+              const node = _node as SerializedLinkNode;
+
+              const fields: LinkFields = node.fields;
+
+              return (
+                <CMSLink
+                  key={index}
+                  newTab={Boolean(fields?.newTab)}
+                  reference={fields.doc as any}
+                  type={fields.linkType === "internal" ? "reference" : "custom"}
+                  url={fields.url}
+                >
+                  {serializedChildren}
+                </CMSLink>
+              );
+            }
+            case "autolink": {
+              const node = _node as SerializedLinkNode;
+
+              console.log(node);
+
+              const fields: LinkFields = node.fields;
+
+              return (
+                <CMSLink
+                  key={index}
+                  newTab={Boolean(fields?.newTab)}
+                  reference={fields.doc as any}
+                  type={fields.linkType === "internal" ? "reference" : "custom"}
+                  url={fields.url}
+                >
+                  {serializedChildren}
+                </CMSLink>
+              );
+            }
+
+            default:
+              return null;
+          }
         }
-
-        if (node.format & IS_UNDERLINE) {
-          text = (
-            <span className="underline" key={i}>
-              {text}
-            </span>
-          );
-        }
-
-        if (node.format & IS_STRIKETHROUGH) {
-          text = (
-            <span className="line-through" key={i}>
-              {text}
-            </span>
-          );
-        }
-
-        return <Fragment key={i}>{text}</Fragment>;
-      }
-
-      if (!node) {
-        return null;
-      }
-
-      if (node.type === "linebreak") {
-        return <br key={i} />;
-      }
-
-      if (node.type === "heading") {
-        return (
-          <node.tag
-            className={`${
-              classNames[node.tag as keyof typeof classNames]
-            } ${generateTextAlign(node)}`}
-            key={i}
-          >
-            {serializeLexicalRichText({ children: node.children })}
-          </node.tag>
-        );
-      }
-
-      if (node.type === "list") {
-        if (node.listType === "bullet") {
-          return (
-            <ul className={`${classNames.ul}`} key={i}>
-              {serializeLexicalRichText({
-                children: node.children,
-                parentNode: node,
-              })}
-            </ul>
-          );
-        } else if (node.listType === "check") {
-          return (
-            <ul className={`${classNames.ul} list-none`} key={i}>
-              {serializeLexicalRichText({
-                children: node.children,
-                parentNode: node,
-              })}
-            </ul>
-          );
-        } else if (node.listType === "number") {
-          return (
-            <ol className={`${classNames.ol}`} key={i}>
-              {serializeLexicalRichText({
-                children: node.children,
-                parentNode: node,
-              })}
-            </ol>
-          );
-        }
-      }
-
-      if (node.type === "listitem" && node.checked) {
-        return (
-          <li className={`${classNames.li} flex gap-1`} key={i}>
-            <div>
-              <MdCheckBox className="w-4 h-4 text-green-500" />
-            </div>
-            <div className="line-through">
-              {serializeLexicalRichText({ children: node.children })}
-            </div>
-          </li>
-        );
-      } else if (node.type === "listitem" && parentNode.listType === "check") {
-        return (
-          <li className={`${classNames.li} flex gap-1`} key={i}>
-            <div>
-              <MdCheckBoxOutlineBlank className="w-4 h-4 text-green-500" />
-            </div>
-            <div className="">
-              {serializeLexicalRichText({ children: node.children })}
-            </div>
-          </li>
-        );
-      } else if (node.type === "listitem") {
-        return (
-          <li className={`${classNames.li}`} key={i}>
-            {serializeLexicalRichText({ children: node.children })}
-          </li>
-        );
-      }
-
-      switch (node.type) {
-        case "quote":
-          return (
-            <blockquote className={`${classNames.blockquote}`} key={i}>
-              {serializeLexicalRichText({ children: node.children })}
-            </blockquote>
-          );
-
-        case "link":
-          return (
-            <Link
-              className={`${classNames.a}`}
-              href={escapeHTML(
-                node.fields.linkType === "internal"
-                  ? `/${node.fields.doc.value.slug}`
-                  : node?.fields?.url
-              )}
-              target={node.fields?.newTab ? "_blank" : "_self"}
-              key={i}
-            >
-              {serializeLexicalRichText({ children: node.children })}
-            </Link>
-          );
-
-        default:
-          return (
-            <p className={`${classNames.p} ${generateTextAlign(node)}`} key={i}>
-              {serializeLexicalRichText({ children: node.children })}
-            </p>
-          );
-      }
-    })
-    .filter((node: any) => node !== null);
+      })}
+    </Fragment>
+  );
 }

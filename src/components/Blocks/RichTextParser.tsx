@@ -1,25 +1,43 @@
-import serializeLexicalRichText from "@/components/Blocks/serializeLexicalRichText";
 import React from "react";
 
-export default function ({
-  className,
-  content,
-  customClassNames,
-}: {
+import { serializeLexical } from "./serializeLexicalRichText";
+import { cn } from "@/lib/utils";
+
+type Props = {
   className?: string;
   content: any;
-  customClassNames?: Record<string, string>;
-}) {
-  if (!content?.root?.children) return "";
+  enableGutter?: boolean;
+  enableProse?: boolean;
+};
+
+const RichText: React.FC<Props> = ({
+  className,
+  content,
+  enableGutter = false,
+  enableProse = true,
+}) => {
+  if (!content) {
+    return null;
+  }
 
   return (
     <div
-      className={`${[className].filter(Boolean).join(" ")} richText font-light`}
+      className={cn(
+        {
+          "container ": enableGutter,
+          "max-w-none": !enableGutter,
+          "mx-auto prose dark:prose-invert ": enableProse,
+        },
+        className
+      )}
     >
-      {serializeLexicalRichText({
-        children: content.root.children,
-        customClassNames,
-      })}
+      {content &&
+        !Array.isArray(content) &&
+        typeof content === "object" &&
+        "root" in content &&
+        serializeLexical({ nodes: content?.root?.children })}
     </div>
   );
-}
+};
+
+export default RichText;

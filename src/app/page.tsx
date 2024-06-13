@@ -38,7 +38,7 @@ export default async function Home() {
   );
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=5`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=6`
   );
 
   const page = (await response.json()).docs[0];
@@ -79,7 +79,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="h-[50vh] md:h-[220px] w-full">
+      <div className="w-full">
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />
