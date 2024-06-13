@@ -11,16 +11,9 @@ export default async function File({ mode, category, files }: any) {
     files = await getFiles(category.name);
   }
 
-  console.log(files);
-
   return (
     <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
       {files.map((file: any, index: any) => {
-        const fileType = file.reference;
-        mode === "byCategory"
-          ? file.url.split(".").pop()
-          : file.reference.filename.split(".").pop();
-
         return (
           <div key={file.id} className="flex-1 flex flex-col w-full">
             {file.embed && (
@@ -42,24 +35,11 @@ export default async function File({ mode, category, files }: any) {
               className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
             >
               <div>
-                <FileText
-                  size={30}
-                  className={cn(
-                    fileType === "pdf" && `text-red-700`,
-                    fileType.startsWith("doc") && `text-blue-500`,
-                    fileType.startsWith("docx") && `text-blue-500`,
-                    fileType.startsWith("xls") && `text-green-500`,
-                    fileType.startsWith("csv") && `text-green-500`,
-                    "w-[30px]"
-                  )}
-                />
+                <FileText size={30} />
               </div>
               <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
                 <p className="">
                   {mode === "byCategory" ? file.alt : file.reference.alt}
-                  {fileType && (
-                    <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
-                  )}
                 </p>
               </div>
             </Link>
