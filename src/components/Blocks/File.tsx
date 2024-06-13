@@ -16,7 +16,10 @@ export default async function File({ mode, category, files }: any) {
   return (
     <div className="flex flex-col w-full items-center justify-center gap-2 flex-wrap py-4">
       {files.map((file: any, index: any) => {
-        const { mimeType } = file.reference;
+        const fileType = file.reference;
+        mode === "byCategory"
+          ? file.url.split(".").pop()
+          : file.reference.filename.split(".").pop();
 
         return (
           <div key={file.id} className="flex-1 flex flex-col w-full">
@@ -42,11 +45,11 @@ export default async function File({ mode, category, files }: any) {
                 <FileText
                   size={30}
                   className={cn(
-                    mimeType.endsWith("pdf") && `text-red-700`,
-                    mimeType.endsWith("doc") && `text-blue-500`,
-                    mimeType.startsWith("docx") && `text-blue-500`,
-                    mimeType.startsWith("xls") && `text-green-500`,
-                    mimeType.startsWith("csv") && `text-green-500`,
+                    fileType === "pdf" && `text-red-700`,
+                    fileType.startsWith("doc") && `text-blue-500`,
+                    fileType.startsWith("docx") && `text-blue-500`,
+                    fileType.startsWith("xls") && `text-green-500`,
+                    fileType.startsWith("csv") && `text-green-500`,
                     "w-[30px]"
                   )}
                 />
@@ -54,8 +57,8 @@ export default async function File({ mode, category, files }: any) {
               <div className="justify-between flex font-semibold uppercase tracking-wide items-center">
                 <p className="">
                   {mode === "byCategory" ? file.alt : file.reference.alt}
-                  {mimeType && (
-                    <span className="text-sm font-light lowercase">{`.${mimeType}`}</span>
+                  {fileType && (
+                    <span className="text-sm font-light lowercase">{`.${fileType}`}</span>
                   )}
                 </p>
               </div>
