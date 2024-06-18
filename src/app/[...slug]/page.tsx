@@ -114,8 +114,8 @@ export async function generateMetadata({
   const page = await getPage(lastSlug);
 
   return {
-    title: page.meta.title || page.title,
-    description: page.meta.description,
+    title: page.meta?.title || page.title,
+    description: page.meta?.description,
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/${page.slug}`,
     },

@@ -8,7 +8,8 @@ import { getHeader } from "@/lib/payload/header";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
 import Head from "next/head";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { PHProvider } from "@/components/Providers";
+import CookieBanner from "@/components/CookieBanner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,15 +40,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
-      >
-        <SiteHeader header={siteHeader} />
-        <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
-          {children}
-        </main>
-        <Footer />
-        {/* <Link
+      <PHProvider>
+        <body
+          className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
+        >
+          <SiteHeader header={siteHeader} />
+          <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
+            {children}
+          </main>
+          <Footer />
+          {/* <Link
           href="https://meridiantrust.co.uk"
           target="_blank"
           className="flex flex-col gap-1 drop-shadow-lg hover:-translate-y-1 ease-in-out transition-all tracking-wide text-center text-sm fixed m-4 bottom-0 right-0 bg-white rounded-xl z-30 p-2 md:px-4 py-2 items-center justify-center"
@@ -56,8 +58,9 @@ export default async function RootLayout({
           <Icons.MeridianTrust className="w-36 hidden md:block" />
           <Icons.MeridianTrustNoText className="w-10 md:hidden" />
         </Link> */}
-      </body>
-      <GoogleAnalytics gaId="G-SSGGNQYWQL" />
+          <CookieBanner />
+        </body>
+      </PHProvider>
     </html>
   );
 }
