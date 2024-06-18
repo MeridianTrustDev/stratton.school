@@ -36,7 +36,7 @@ export default async function Footer() {
                     href={
                       link.type === "custom"
                         ? link.url
-                        : `${process.env.NEXT_PUBLIC_BASE_URL}${link.reference.slug}`
+                        : `${process.env.NEXT_PUBLIC_BASE_URL}/${link.reference.slug}`
                     }
                   >
                     {link.label}
