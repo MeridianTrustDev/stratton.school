@@ -10,6 +10,7 @@ export function PHProvider({ children }: any) {
       api_host: "https://eu.i.posthog.com",
       persistence:
         cookieConsentGiven() === "yes" ? "localStorage+cookie" : "memory",
+      capture_pageleave: true, // Enable automatic pageleave capture
     });
   }
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>;

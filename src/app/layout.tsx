@@ -10,6 +10,7 @@ import { Icons } from "@/components/Icons";
 import Head from "next/head";
 import { PHProvider } from "@/components/Providers";
 import CookieBanner from "@/components/CookieBanner";
+import PostHogPageView from "@/components/PostHogPageView";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -44,6 +45,8 @@ export default async function RootLayout({
         <body
           className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
         >
+          <PostHogPageView />
+
           <SiteHeader header={siteHeader} />
           <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
             {children}
