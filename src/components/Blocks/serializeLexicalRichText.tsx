@@ -135,7 +135,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
               type Heading = Extract<
                 keyof JSX.IntrinsicElements,
-                "h1" | "h2" | "h3"
+                "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
               >;
               const Tag = node?.tag as Heading;
 
@@ -151,6 +151,16 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 case "h3":
                   styles = "text-2xl font-medium text-gray-700";
                   break;
+                case "h4":
+                  styles = "text-2xl font-medium text-gray-700";
+                  break;
+                case "h5":
+                  styles = "text-2xl font-medium text-gray-700";
+                  break;
+                case "h6":
+                  styles = "text-2xl font-medium text-gray-700";
+                  break;
+
                 default:
                   break;
               }
@@ -191,7 +201,11 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 );
               } else {
                 return (
-                  <li key={index} value={node?.value}>
+                  <li
+                    key={index}
+                    className="list-disc list-inside"
+                    value={node?.value}
+                  >
                     {serializedChildren}
                   </li>
                 );
