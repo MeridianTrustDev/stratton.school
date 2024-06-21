@@ -32,7 +32,7 @@ export default function NavigationItem({ item }: { item: any }) {
                   : "text-white",
                 "flex items-center gap-x-1 text-lg font-bold uppercase leading-6 transition-all focus:outline-none"
               )}
-              href={item.url}
+              href={item.disableLink ? "#" : item.url}
             >
               {item.label}
               <ChevronDown className="h-5 w-5 flex-none " aria-hidden="true" />
