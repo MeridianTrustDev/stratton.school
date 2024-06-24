@@ -43,6 +43,8 @@ export default async function Home() {
 
   const page = (await response.json()).docs[0];
 
+  console.log(page);
+
   const houses = await getHouses();
 
   return (
