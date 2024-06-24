@@ -32,8 +32,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((_node, index) => {
-        console.log(_node.type);
-
         if (_node.type === "text") {
           const node = _node as SerializedTextNode;
           let text = <React.Fragment key={index}>{node.text}</React.Fragment>;
@@ -237,8 +235,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             }
             case "autolink": {
               const node = _node as SerializedLinkNode;
-
-              console.log(node);
 
               const fields: LinkFields = node.fields;
 

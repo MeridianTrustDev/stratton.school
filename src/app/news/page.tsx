@@ -59,7 +59,7 @@ export default async function Page() {
                   className="w-full h-full flex flex-col items-center justify-between "
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
+                    src={`#`}
                     alt={news.featuredImage.alt}
                     width={200}
                     height={200}

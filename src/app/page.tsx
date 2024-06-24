@@ -60,7 +60,7 @@ export default async function Home() {
                   href={`/our-house-system`}
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${house.logo.url}`}
+                    src={`#`}
                     width={house.logo.width}
                     height={house.logo.height}
                     alt={house.logo.alt}
