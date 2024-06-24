@@ -9,13 +9,15 @@ export default async function Footer() {
   return (
     <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4 z-20">
       <div className="flex flex-col  md:flex-row w-full items-center justify-center gap-4 md:gap-12">
-        <Image
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}
-          width={footer.logo.width}
-          height={footer.logo.height}
-          alt={footer.logo.alt}
-          className="object-contain w-64 md:order-2"
-        />
+        {footer.logo && (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}
+            width={footer.logo.width}
+            height={footer.logo.height}
+            alt={footer.logo.alt}
+            className="object-contain w-64 md:order-2"
+          />
+        )}
         <div className="text-center uppercase font-bold text-white flex-col flex gap-2 md:order-1 md:text-right flex-1">
           <h4 className="underline underline-offset-4">Contact Us</h4>
           <div className="text-sm font-bold">

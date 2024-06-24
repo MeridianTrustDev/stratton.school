@@ -36,13 +36,15 @@ export default function Hero({ slides }: any) {
 
           <div className="absolute z-10 h-screen w-screen bg-gradient-to-b from-black to-transparent opacity-50"></div>
           <div className="bg-black opacity-90 h-full">
-            <Image
-              className="relative h-full bg-cover object-cover"
-              src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${slide.image.url}`}
-              alt={slide.image.alt}
-              width={slide.image.width}
-              height={slide.image.height}
-            />
+            {slide.image && (
+              <Image
+                className="relative h-full bg-cover object-cover"
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${slide.image.url}`}
+                alt={slide.image.alt}
+                width={slide.image.width}
+                height={slide.image.height}
+              />
+            )}
           </div>
         </SplideSlide>
       ))}

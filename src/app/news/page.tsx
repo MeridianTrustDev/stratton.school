@@ -58,13 +58,15 @@ export default async function Page() {
                   href={`/news/${news.slug}`}
                   className="w-full h-full flex flex-col items-center justify-between "
                 >
-                  <Image
-                    src={`#`}
-                    alt={news.featuredImage.alt}
-                    width={200}
-                    height={200}
-                    className="w-full h-1/2 object-cover self-start"
-                  />
+                  {news.featuredImage && (
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
+                      alt={news.featuredImage.alt}
+                      width={200}
+                      height={200}
+                      className="w-full h-1/2 object-cover self-start"
+                    />
+                  )}
                   <h3 className="text-white text-center font-medium tracking-wide text-xl line-clamp-2 w-full">
                     {news.title}
                   </h3>

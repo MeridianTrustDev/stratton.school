@@ -59,13 +59,15 @@ export default async function Home() {
                   style={{ backgroundColor: `${house.houseColour}` }}
                   href={`/our-house-system`}
                 >
-                  <Image
-                    src={`#`}
-                    width={house.logo.width}
-                    height={house.logo.height}
-                    alt={house.logo.alt}
-                    className="hidden md:block opacity-30 md:opacity-100 md:-translate-y-10 object-contain max-w-[100px] group-hover:-translate-y-12  ease-in-out transition-all absolute left-0 translate-x-2"
-                  />
+                  {house.logo && (
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${house.logo.url}`}
+                      width={house.logo.width}
+                      height={house.logo.height}
+                      alt={house.logo.alt}
+                      className="hidden md:block opacity-30 md:opacity-100 md:-translate-y-10 object-contain max-w-[100px] group-hover:-translate-y-12  ease-in-out transition-all absolute left-0 translate-x-2"
+                    />
+                  )}
                   <h4 className="text-sm md:hidden lg:block md:text-3xl uppercase font-bold md:opacity-20">
                     {house.name}
                   </h4>

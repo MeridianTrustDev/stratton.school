@@ -55,13 +55,15 @@ export default function SiteHeader({ header }: { header: any }) {
         <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Stratton School</span>
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${header.logo.url}`}
-              width={header.logo.width}
-              height={header.logo.height}
-              alt={header.logo.alt}
-              className="resize-none max-w-60"
-            />
+            {header.logo && (
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${header.logo.url}`}
+                width={header.logo.width}
+                height={header.logo.height}
+                alt={header.logo.alt}
+                className="resize-none max-w-60"
+              />
+            )}
           </Link>
         </div>
         <div className="flex w-full justify-end md:hidden">
