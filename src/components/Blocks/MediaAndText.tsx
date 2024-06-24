@@ -11,14 +11,15 @@ export default function MediaAndText(props: any) {
         "flex flex-col md:flex-row items-center justify-center text-left p-4 w-full h-full gap-8"
       }
     >
-      <Image
-        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${props.media.url}`}
-        width={props.media.width}
-        height={props.media.height}
-        alt={props.media.alt}
-        className={`py-2 object-contain h-full w-52`}
-      />
-
+      {props.media && (
+        <Image
+          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${props.media.url}`}
+          width={props.media.width}
+          height={props.media.height}
+          alt={props.media.alt}
+          className={`py-2 object-contain h-full w-52`}
+        />
+      )}
       <div className="flex-1 flex flex-col w-full md:gap-4 justify-center items-center md:items-start">
         <RichTextParser
           content={props.text}
@@ -34,8 +35,12 @@ export default function MediaAndText(props: any) {
             })}
             href={
               props.readMore.readMoreLink.target === "page"
-                ? `/${props.readMore.readMoreLink.page.slug}`
+                ? props.readMore.readMoreLink.page.slug
+                  ? `/${props.readMore.readMoreLink.page.slug}`
+                  : "#"
                 : props.readMore.readMoreLink.url
+                ? props.readMore.readMoreLink.url
+                : "#"
             }
           >
             {props.readMore.readMoreText}

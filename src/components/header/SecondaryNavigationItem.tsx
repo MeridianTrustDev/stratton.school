@@ -33,7 +33,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
                 isShowing ? "transition-all" : "text-white",
                 "flex items-center gap-x-1 text-lg font-bold uppercase leading-6 transition-all focus:outline-none"
               )}
-              href={item.disableLink ? "#" : item.url}
+              href={item.disableLink ? "#" : item.url ? item.url : "#"}
             >
               {item.label}
               <ChevronDown className="h-5 w-5 flex-none " aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
                 return (
                   <Link
                     key={child.id}
-                    href={child.url}
+                    href={child.url || "#"}
                     onClick={() => setIsShowing(false)}
                     className="block rounded-lg px-3 py-2 text-md font-semibold leading-6 text-gray-900 hover:bg-gray-50 focus:outline-none"
                   >
@@ -64,7 +64,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
         </Popover>
       ) : (
         <Link
-          href={item.url}
+          href={item.url || "#"}
           style={{ backgroundColor: item.color }}
           className="flex h-10 min-w-10 items-center justify-center px-2 py-2 cursor-pointer gap-2 text-sm font-semibold uppercase leading-6 text-white border-b-2 border-transparent transition-all group"
         >

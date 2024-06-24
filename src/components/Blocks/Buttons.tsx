@@ -15,6 +15,8 @@ export default function Buttons({ buttons }: any) {
                 button.target === "reference"
                   ? `/${button.reference.slug}`
                   : button.url
+                  ? button.url
+                  : "#"
               }
               className="text-white group uppercase w-full h-32 hover:scale-[102%] transition-all ease-in-out font-bold text-lg relative bg-black"
             >
@@ -27,14 +29,16 @@ export default function Buttons({ buttons }: any) {
                 }}
                 className="z-[5] w-full h-full absolute"
               />
-              <Image
-                loading="lazy"
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${button.backgroundImage.url}`}
-                width={button.backgroundImage.width}
-                height={button.backgroundImage.height}
-                alt={button.backgroundImage.alt}
-                className="h-full w-full object-cover"
-              />
+              {button.backgroundImage && (
+                <Image
+                  loading="lazy"
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${button.backgroundImage.url}`}
+                  width={button.backgroundImage.width}
+                  height={button.backgroundImage.height}
+                  alt={button.backgroundImage.alt}
+                  className="h-full w-full object-cover"
+                />
+              )}
             </Link>
           );
         })}

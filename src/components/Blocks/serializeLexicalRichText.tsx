@@ -227,7 +227,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   newTab={Boolean(fields?.newTab)}
                   reference={fields.doc as any}
                   type={fields.linkType === "internal" ? "reference" : "custom"}
-                  url={fields.url}
+                  url={fields.url ? fields.url : "#"}
                 >
                   {serializedChildren}
                 </CMSLink>
@@ -244,7 +244,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   newTab={Boolean(fields?.newTab)}
                   reference={fields.doc as any}
                   type={fields.linkType === "internal" ? "reference" : "custom"}
-                  url={fields.url}
+                  url={fields.url ? fields.url : "#"}
                 >
                   {serializedChildren}
                 </CMSLink>

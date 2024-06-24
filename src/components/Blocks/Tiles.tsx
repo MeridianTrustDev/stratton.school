@@ -14,7 +14,13 @@ export default function Tiles({ tiles }: any) {
           <Link
             key={tile.id}
             href={
-              tile.target === "reference" ? `/${tile.reference.slug}` : tile.url
+              tile.target === "reference"
+                ? tile.reference.slug
+                  ? `/${tile.reference.slug}`
+                  : "#"
+                : tile.url
+                ? tile.url
+                : "#"
             }
             style={{
               background: tile.backgroundColour || "#4EBCC1",

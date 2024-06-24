@@ -37,7 +37,7 @@ export default function MobileNavigation({
                 <div key={item.id}>
                   {item.children.length > 0 ? (
                     <Disclosure as="div">
-                      {({ open }) => (
+                      {({ open }: any) => (
                         <>
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
                             {item.label}
@@ -58,7 +58,7 @@ export default function MobileNavigation({
 
                                   return (
                                     <Disclosure as="div" key={child.id}>
-                                      {({ open }) => (
+                                      {({ open }: any) => (
                                         <>
                                           <Disclosure.Button className="flex w-full justify-between items-center rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900">
                                             {child.label}
@@ -85,7 +85,9 @@ export default function MobileNavigation({
                                                       onClick={() =>
                                                         setMobileMenuOpen(false)
                                                       }
-                                                      href={childChild.url}
+                                                      href={
+                                                        childChild.url || "#"
+                                                      }
                                                       className="flex w-full justify-between items-center rounded-lg pl-16 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900"
                                                     >
                                                       {childChild.label}

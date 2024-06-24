@@ -38,6 +38,8 @@ export default async function Footer() {
                     href={
                       link.type === "custom"
                         ? link.url
+                          ? link.url
+                          : "#"
                         : `${process.env.NEXT_PUBLIC_BASE_URL}/${link.reference.slug}`
                     }
                   >

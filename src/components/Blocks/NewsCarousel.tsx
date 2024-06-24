@@ -29,13 +29,15 @@ export default function NewsCarousel({ news }: any) {
                 href={`/news/${news.slug}`}
                 className="w-full flex items-center gap-2 h-full"
               >
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
-                  alt={news.featuredImage.alt}
-                  width={200}
-                  height={200}
-                  className="w-1/3 object-cover self-start"
-                />
+                {news.featuredImage && (
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
+                    alt={news.featuredImage.alt}
+                    width={200}
+                    height={200}
+                    className="w-1/3 object-cover self-start"
+                  />
+                )}
                 <div className="flex-col flex justify-between w-full h-full break-words overflow-hidden">
                   <h3 className="text-white font-medium tracking-wide text-xl line-clamp-3 break-words w-full text-left">
                     {news.title}
