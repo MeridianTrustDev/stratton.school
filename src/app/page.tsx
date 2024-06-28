@@ -12,6 +12,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { getHouses } from "@/lib/payload/houses";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Home | Stratton School",
@@ -42,6 +43,8 @@ export default async function Home() {
   );
 
   const page = (await response.json()).docs[0];
+
+  if (!page) notFound();
 
   const houses = await getHouses();
 

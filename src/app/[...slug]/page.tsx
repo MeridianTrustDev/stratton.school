@@ -115,6 +115,12 @@ export async function generateMetadata({
 
   const page = await getPage(lastSlug);
 
+  if (!page) {
+    return {
+      title: "Page Not Found",
+    };
+  }
+
   return {
     title: page?.meta?.title || page.title,
     description: page?.meta?.description,
