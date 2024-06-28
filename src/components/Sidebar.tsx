@@ -8,6 +8,8 @@ import React from "react";
 export default function Sidebar({ parent, className }: any) {
   const pathname = usePathname();
 
+  console.log("PARENT: ", parent);
+
   return (
     <div className={cn(className, "w-full h-fit bg-[#F3F3F3] px-4 py-2")}>
       <div>

@@ -44,8 +44,6 @@ export default function serializeLexicalRichText({
         a: "text-blue-500 underline",
       };
 
-      console.log(node.fields);
-
       if (node.type === "upload") {
         if (node.value.mimeType.includes("image")) {
           return (

@@ -43,6 +43,8 @@ export default async function Page({ params: { slug } }: PageParams) {
         return false;
       }
     })[0];
+
+    header.primaryNavigation.navItems;
   }
 
   return (
@@ -114,16 +116,16 @@ export async function generateMetadata({
   const page = await getPage(lastSlug);
 
   return {
-    title: page.meta?.title || page.title,
-    description: page.meta?.description,
+    title: page?.meta?.title || page.title,
+    description: page?.meta?.description,
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/${page.slug}`,
     },
     twitter: {
       card: "summary_large_image",
       site: "@StrattonSchoolBeds",
-      title: page.meta.title || page.title,
-      description: page.meta.description || "",
+      title: page?.meta?.title || page.title,
+      description: page?.meta?.description || "",
       // image: page.meta.image
       //   ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${page.meta.image.url}`
       //   : page.featuredImage
