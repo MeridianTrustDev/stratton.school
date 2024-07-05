@@ -38,7 +38,7 @@ export default async function Page({ params: { slug } }: PageParams) {
       <div className="w-full md:w-1/4 flex justify-center max-h-64">
         {news.featuredImage && (
           <Image
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
+            src={news.featuredImage.url}
             width={news.featuredImage.width}
             height={news.featuredImage.height}
             alt={news.featuredImage.alt}

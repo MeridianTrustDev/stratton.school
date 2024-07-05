@@ -32,7 +32,7 @@ export default function Buttons({ buttons }: any) {
               {button.backgroundImage && (
                 <Image
                   loading="lazy"
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${button.backgroundImage.url}`}
+                  src={button.backgroundImage.url}
                   width={button.backgroundImage.width}
                   height={button.backgroundImage.height}
                   alt={button.backgroundImage.alt}

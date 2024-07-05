@@ -18,7 +18,7 @@ export default async function File({ mode, category, files }: any) {
           <div key={file.id} className="flex-1 flex flex-col w-full">
             {file.embed && (
               <object
-                data={`${process.env.NEXT_PUBLIC_BACKEND_URL}${
+                data={
                   mode === "byCategory"
                     ? file.url
                       ? file.url
@@ -26,7 +26,7 @@ export default async function File({ mode, category, files }: any) {
                     : file.reference.url
                     ? file.reference.url
                     : "#"
-                }`}
+                }
                 type="application/pdf"
                 className="h-[100vh]"
                 width="100%"
@@ -35,7 +35,7 @@ export default async function File({ mode, category, files }: any) {
               />
             )}
             <Link
-              href={`${process.env.NEXT_PUBLIC_BACKEND_URL}${
+              href={
                 mode === "byCategory"
                   ? file.url
                     ? file.url
@@ -43,7 +43,7 @@ export default async function File({ mode, category, files }: any) {
                   : file.reference.url
                   ? file.reference.url
                   : "#"
-              }`}
+              }
               className="flex-1 h-18 bg-gray-100 w-full p-4 flex items-center gap-4 text-xl hover:bg-gray-200 transition-all"
             >
               <div>

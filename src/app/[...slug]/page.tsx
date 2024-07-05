@@ -52,7 +52,7 @@ export default async function Page({ params: { slug } }: PageParams) {
       <div className="w-full md:w-1/4 flex flex-col gap-4 z-10">
         {page.featuredImage && (
           <Image
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${page.featuredImage.url}`}
+            src={page.featuredImage.url}
             width={page.featuredImage.width}
             height={page.featuredImage.height}
             alt={page.featuredImage.alt}

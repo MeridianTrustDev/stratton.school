@@ -57,7 +57,7 @@ export default function SiteHeader({ header }: { header: any }) {
             <span className="sr-only">Stratton School</span>
             {header.logo && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${header.logo.url}`}
+                src={header.logo.url}
                 width={header.logo.width}
                 height={header.logo.height}
                 alt={header.logo.alt}

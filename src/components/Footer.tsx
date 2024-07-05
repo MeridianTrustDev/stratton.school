@@ -11,7 +11,7 @@ export default async function Footer() {
       <div className="flex flex-col  md:flex-row w-full items-center justify-center gap-4 md:gap-12">
         {footer.logo && (
           <Image
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${footer.logo.url}`}
+            src={footer.logo.url}
             width={footer.logo.width}
             height={footer.logo.height}
             alt={footer.logo.alt}

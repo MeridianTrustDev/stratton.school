@@ -31,7 +31,7 @@ export default function NewsCarousel({ news }: any) {
               >
                 {news.featuredImage && (
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${news.featuredImage.url}`}
+                    src={news.featuredImage.url}
                     alt={news.featuredImage.alt}
                     width={200}
                     height={200}

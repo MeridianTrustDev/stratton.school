@@ -5,7 +5,7 @@ export default function Media({ media }: { media: any }) {
     <div className="flex w-full md:justify-center">
       {media.url && (
         <Image
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${media.url}`}
+          src={media.url}
           width={media.width}
           height={media.height}
           alt={media.alt}

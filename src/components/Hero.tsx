@@ -39,7 +39,7 @@ export default function Hero({ slides }: any) {
             {slide.image && (
               <Image
                 className="relative h-full bg-cover object-cover"
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${slide.image.url}`}
+                src={slide.image.url}
                 alt={slide.image.alt}
                 width={slide.image.width}
                 height={slide.image.height}

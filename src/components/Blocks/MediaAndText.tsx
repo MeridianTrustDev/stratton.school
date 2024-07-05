@@ -13,7 +13,7 @@ export default function MediaAndText(props: any) {
     >
       {props.media && (
         <Image
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${props.media.url}`}
+          src={props.media.url}
           width={props.media.width}
           height={props.media.height}
           alt={props.media.alt}
