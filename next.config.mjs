@@ -16,6 +16,7 @@ const nextConfig = {
         hostname: "meridianimages.blob.core.windows.net",
       },
     ],
+    unoptimized: true,
   },
 };
 

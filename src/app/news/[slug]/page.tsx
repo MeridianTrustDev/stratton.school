@@ -77,7 +77,7 @@ export async function generateMetadata({
 }: PageParams): Promise<Metadata> {
   const news = await getNews(slug);
   return {
-    title: news.title,
+    title: news.title !== undefined ? news.title : "",
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/news/${news.slug}`,
     },
