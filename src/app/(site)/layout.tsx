@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
+import SiteHeader from "@/components/SiteHeader";
 import { Poppins } from "next/font/google";
+import type { Header as PayloadHeader } from "@/types/payload";
+import Footer from "@/components/Footer";
+import { getHeader } from "@/lib/payload/header";
 import { PHProvider } from "@/components/Providers";
-import { Suspense } from "react";
+import CookieBanner from "@/components/CookieBanner";
 import PostHogPageView from "@/components/PostHogPageView";
+import { Suspense } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,19 +35,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <PHProvider>
-        <body
-          className={`flex flex-col ${poppins.variable} items-center w-screen overflow-x-hidden bg-black`}
-        >
-          <Suspense>
-            <PostHogPageView />
-          </Suspense>
+  const siteHeader: PayloadHeader = await getHeader();
 
-          {children}
-        </body>
-      </PHProvider>
-    </html>
+  return (
+    <>
+      <SiteHeader header={siteHeader} />
+      <main className="min-h-[63vh] w-full flex flex-col items-center bg-white">
+        {children}
+      </main>
+      <Footer />
+    </>
   );
 }

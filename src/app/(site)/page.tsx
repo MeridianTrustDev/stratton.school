@@ -1,15 +1,10 @@
-import { payload } from "@/lib/payload";
 import React from "react";
 import qs from "qs";
-import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
 import RenderBlocks from "@/components/Blocks/RenderBlocks";
-import { ChevronsDown, Mouse } from "lucide-react";
 import { Metadata } from "next";
 import MeridianTrust from "@/components/MeridianTrust";
-import { Icons } from "@/components/Icons";
 import Link from "next/link";
-import Head from "next/head";
 import { getHouses } from "@/lib/payload/houses";
 import Image from "next/image";
 import { notFound } from "next/navigation";
