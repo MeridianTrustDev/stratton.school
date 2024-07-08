@@ -34,7 +34,7 @@ export default function Alert() {
               here
             </Link>
             <br />
-            New Year 10s and Year 12s are on Work Experience Year 9s are on a
+            Year 10s and Year 12s are on Work Experience Year 9s are on a
             variety of themed events this week.
           </DialogDescription>
         </DialogHeader>
