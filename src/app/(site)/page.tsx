@@ -9,6 +9,8 @@ import { getHouses } from "@/lib/payload/houses";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import Alert from "@/components/alert";
+
 export const metadata: Metadata = {
   title: "Home | Stratton School",
   alternates: {
@@ -93,6 +95,7 @@ export default async function Home() {
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />
+      <Alert />
     </>
   );
 }
