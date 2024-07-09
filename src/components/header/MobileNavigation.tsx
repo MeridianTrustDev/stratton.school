@@ -27,9 +27,9 @@ export default function MobileNavigation({
       open={mobileMenuOpen}
       onClose={setMobileMenuOpen}
     >
-      <div className="fixed inset-0 z-10" />
-      <Dialog.Panel className="fixed inset-y-0 mt-20 gap-4 flex flex-col right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div className="mt-6 flow-root">
+      <div className="fixed inset-0" />
+      <Dialog.Panel className="fixed inset-y-0 mt-32 mb-10 gap-4 flex flex-col right-0 z-20 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="mt-6 flex flex-col gap-2">
           {primaryNavItems.length > 0 &&
             primaryNavItems.map((item: any) => {
               item.url = navItemUrl(item);
@@ -39,16 +39,30 @@ export default function MobileNavigation({
                     <Disclosure as="div">
                       {({ open }: any) => (
                         <>
-                          <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
-                            {item.label}
-                            <ChevronDown
+                          <div className="flex w-full items-center justify-between rounded-lg text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
+                            <Link
+                              className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
+                              href={item.url || "#"}
+                            >
+                              {item.label}
+                            </Link>
+                            <Disclosure.Button
                               className={cn(
-                                open ? "rotate-180" : "",
-                                "h-5 w-5 flex-none"
+                                open ? "bg-white" : "bg-neutral-900",
+                                "py-4 px-8 rounded-md"
                               )}
-                              aria-hidden="true"
-                            />
-                          </Disclosure.Button>
+                            >
+                              <ChevronDown
+                                className={cn(
+                                  open
+                                    ? "-rotate-180 text-black"
+                                    : "text-white",
+                                  "h-5 w-5 flex-none transition-all ease-in-out"
+                                )}
+                                aria-hidden="true"
+                              />
+                            </Disclosure.Button>
+                          </div>
                           <Disclosure.Panel className="mt-2 space-y-2">
                             {item.children.length > 0 &&
                               item.children.map((child: any) => {
@@ -60,17 +74,32 @@ export default function MobileNavigation({
                                     <Disclosure as="div" key={child.id}>
                                       {({ open }: any) => (
                                         <>
-                                          <Disclosure.Button className="flex w-full justify-between items-center rounded-lg pl-8 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900">
-                                            {child.label}
-                                            <ChevronDown
+                                          <div className="flex pl-6 w-full items-center justify-between rounded-lg text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
+                                            <Link
+                                              className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
+                                              href={child.url || "#"}
+                                            >
+                                              {child.label}
+                                            </Link>
+                                            <Disclosure.Button
                                               className={cn(
-                                                open ? "rotate-180" : "",
-                                                "h-5 w-5 flex-none"
+                                                open
+                                                  ? "bg-white"
+                                                  : "bg-neutral-900",
+                                                "py-4 px-8 rounded-md"
                                               )}
-                                              aria-hidden="true"
-                                            />
-                                          </Disclosure.Button>
-
+                                            >
+                                              <ChevronDown
+                                                className={cn(
+                                                  open
+                                                    ? "-rotate-180 text-black"
+                                                    : "text-white",
+                                                  "h-5 w-5 flex-none transition-all ease-in-out"
+                                                )}
+                                                aria-hidden="true"
+                                              />
+                                            </Disclosure.Button>
+                                          </div>
                                           <Disclosure.Panel>
                                             {child.children &&
                                               child.children.length > 0 &&
@@ -88,7 +117,7 @@ export default function MobileNavigation({
                                                       href={
                                                         childChild.url || "#"
                                                       }
-                                                      className="flex w-full justify-between items-center rounded-lg pl-16 py-2 text-sm font-semibold leading-6 text-white transition-all hover:bg-neutral-900"
+                                                      className="flex w-full justify-between items-center rounded-lg pl-16 py-4 text-base font-semibold leading-6 text-white transition-all hover:bg-neutral-900"
                                                     >
                                                       {childChild.label}
                                                     </Link>
@@ -106,7 +135,7 @@ export default function MobileNavigation({
                                   <Link
                                     onClick={() => setMobileMenuOpen(false)}
                                     href={child.url}
-                                    className="flex w-full items-center justify-between rounded-lg py-2 pl-8 pr-3.5 text-sm font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
+                                    className="flex w-full items-center justify-between rounded-lg py-4 pl-8 pr-3.5 text-base font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
                                   >
                                     {child.label}
                                   </Link>
@@ -120,7 +149,7 @@ export default function MobileNavigation({
                     <Link
                       onClick={() => setMobileMenuOpen(false)}
                       href={item.url}
-                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900"
+                      className="flex w-full items-center justify-between rounded-lg py-4 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900"
                     >
                       {item.label}
                     </Link>
