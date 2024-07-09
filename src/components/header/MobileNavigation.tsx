@@ -43,6 +43,7 @@ export default function MobileNavigation({
                             <Link
                               className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
                               href={item.url || "#"}
+                              onClick={() => setMobileMenuOpen(false)}
                             >
                               {item.label}
                             </Link>
@@ -78,6 +79,9 @@ export default function MobileNavigation({
                                             <Link
                                               className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
                                               href={child.url || "#"}
+                                              onClick={() =>
+                                                setMobileMenuOpen(false)
+                                              }
                                             >
                                               {child.label}
                                             </Link>
