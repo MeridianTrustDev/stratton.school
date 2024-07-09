@@ -30,7 +30,7 @@ export default function NewsCarousel({ news }: any) {
                 className="w-full flex items-center gap-2 h-full"
               >
                 {news.featuredImage && (
-                  <Image
+                  <img
                     src={news.featuredImage.url}
                     alt={news.featuredImage.alt}
                     width={200}

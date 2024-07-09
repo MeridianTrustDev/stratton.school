@@ -51,7 +51,7 @@ export default async function Page({ params: { slug } }: PageParams) {
     <div className="pt-40 p-4 px-10 w-full flex flex-col md:flex-row-reverse justify-center md:justify-start gap-4 bg-white">
       <div className="w-full md:w-1/4 flex flex-col gap-4 z-10">
         {page.featuredImage && (
-          <Image
+          <img
             src={page.featuredImage.url}
             width={page.featuredImage.width}
             height={page.featuredImage.height}

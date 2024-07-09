@@ -4,7 +4,7 @@ export default function Media({ media }: { media: any }) {
   return (
     <div className="flex w-full md:justify-center">
       {media.url && (
-        <Image
+        <img
           src={media.url}
           width={media.width}
           height={media.height}

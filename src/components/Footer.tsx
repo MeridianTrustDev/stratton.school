@@ -10,7 +10,7 @@ export default async function Footer() {
     <div className="w-full bg-[#232323] flex flex-col items-center p-4 antialiased gap-4 z-20">
       <div className="flex flex-col  md:flex-row w-full items-center justify-center gap-4 md:gap-12">
         {footer.logo && (
-          <Image
+          <img
             src={footer.logo.url}
             width={footer.logo.width}
             height={footer.logo.height}

@@ -30,7 +30,7 @@ export default function Buttons({ buttons }: any) {
                 className="z-[5] w-full h-full absolute"
               />
               {button.backgroundImage && (
-                <Image
+                <img
                   loading="lazy"
                   src={button.backgroundImage.url}
                   width={button.backgroundImage.width}
