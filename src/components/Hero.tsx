@@ -33,7 +33,6 @@ export default function Hero({ slides }: any) {
               </h2>
             </div>
           </div>
-
           <div className="absolute z-10 h-screen w-screen bg-gradient-to-b from-black to-transparent opacity-50"></div>
           <div className="bg-black opacity-90 h-full">
             {slide.image && (
@@ -50,4 +49,4 @@ export default function Hero({ slides }: any) {
       ))}
     </Splide>
   );
-} //
+}
