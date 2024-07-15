@@ -56,7 +56,7 @@ export default function SiteHeader({ header }: { header: any }) {
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Stratton School</span>
             {header.logo && (
-              <Image
+              <img
                 src={header.logo.url}
                 width={header.logo.width}
                 height={header.logo.height}

@@ -12,7 +12,7 @@ export default function MediaAndText(props: any) {
       }
     >
       {props.media && (
-        <Image
+        <img
           src={props.media.url}
           width={props.media.width}
           height={props.media.height}

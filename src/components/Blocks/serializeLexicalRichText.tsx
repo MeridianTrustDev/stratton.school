@@ -47,7 +47,7 @@ export default function serializeLexicalRichText({
       if (node.type === "upload") {
         if (node.value.mimeType.includes("image")) {
           return (
-            <Image
+            <img
               src={process.env.NEXT_PUBLIC_BACKEND_URL + node.value.url}
               alt={node.value.alt}
               key={i}
