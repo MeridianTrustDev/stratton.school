@@ -70,7 +70,7 @@ export default async function Home() {
                     href={`/our-house-system`}
                   >
                     {house.logo && (
-                      <Image
+                      <img
                         src={house.logo.url}
                         width={house.logo.width}
                         height={house.logo.height}
