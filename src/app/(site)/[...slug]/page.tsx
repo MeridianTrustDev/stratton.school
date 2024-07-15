@@ -100,7 +100,7 @@ export default async function Page({ params: { slug } }: PageParams) {
         </h1>
         <RenderBlocks layout={page.layout} />
       </div>
-      <Icons.Stratton className="absolute w-[80vh] hidden md:block md:top-10 left-0 opacity-[0.02]" />
+      {/* <Icons.Stratton className="absolute w-[80vh] hidden md:block md:top-10 left-0 opacity-[0.02]" /> */}
       {parent && (
         <Sidebar className={`flex flex-col md:hidden`} parent={parent} />
       )}
