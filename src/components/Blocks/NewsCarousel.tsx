@@ -35,6 +35,7 @@ export default function NewsCarousel({ news }: any) {
                     alt={news.featuredImage.alt}
                     width={200}
                     height={200}
+                    loading="lazy"
                     className="w-1/3 object-cover self-start"
                   />
                 )}
