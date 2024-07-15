@@ -37,7 +37,7 @@ export default function Hero({ slides }: any) {
           <div className="absolute z-10 h-screen w-screen bg-gradient-to-b from-black to-transparent opacity-50"></div>
           <div className="bg-black opacity-90 h-full">
             {slide.image && (
-              <Image
+              <img
                 className="relative h-full bg-cover object-cover"
                 src={slide.image.url}
                 alt={slide.image.alt}

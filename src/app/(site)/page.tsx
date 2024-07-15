@@ -95,7 +95,7 @@ export default async function Home() {
         <RenderBlocks layout={page.layout} />
       </div>
       <MeridianTrust />
-      <Alert />
+      {/* <Alert /> */}
     </>
   );
 }
