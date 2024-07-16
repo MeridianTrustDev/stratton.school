@@ -33,7 +33,7 @@ export default async function Page({ params: { slug } }: PageParams) {
 
   let parent = null;
 
-  if (page.breadcrumbs.length > 0) {
+  if (page.breadcrumbs?.length > 0) {
     const header = await getHeader();
 
     parent = header.primaryNavigation.navItems.filter((item: any) => {
@@ -70,8 +70,8 @@ export default async function Page({ params: { slug } }: PageParams) {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            {page.breadcrumbs.length > 0 ? (
-              page.breadcrumbs.map((crumb: any, index: number) => (
+            {page.breadcrumbs?.length > 0 ? (
+              page.breadcrumbs?.map((crumb: any, index: number) => (
                 <div
                   key={`${crumb.label}-${index}`}
                   className="flex gap-1.5 sm:gap-2.5 items-center justify-center"
@@ -81,7 +81,7 @@ export default async function Page({ params: { slug } }: PageParams) {
                       {crumb.label}
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  {index !== page.breadcrumbs.length - 1 && (
+                  {index !== page.breadcrumbs?.length - 1 && (
                     <BreadcrumbSeparator key={`separator-${index}`} />
                   )}
                 </div>
