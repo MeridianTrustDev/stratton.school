@@ -33,6 +33,8 @@ export default async function Page({ params: { slug } }: PageParams) {
 
   let parent = null;
 
+  console.log(page.breadcrumbs);
+
   if (page.breadcrumbs?.length > 0) {
     const header = await getHeader();
 
