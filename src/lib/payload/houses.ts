@@ -19,6 +19,10 @@ export const getHouses = async () => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/houses${stringifiedQuery}&depth=2`
     );
 
+    console.log(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/houses${stringifiedQuery}&depth=2`
+    );
+
     return (await response.json()).docs;
   } catch (error) {
     console.log(error);

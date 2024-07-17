@@ -186,8 +186,12 @@ export async function generateStaticParams() {
   );
 
   const pages = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=10000`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=10000&select[0]=slug`
   )?.then((res) => res.json()?.then((data) => data.docs));
+
+  console.log(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=0&limit=10000&select[0]=slug`
+  );
 
   if (pages && Array.isArray(pages) && pages.length > 0) {
     paths = pages.map((page) => {
