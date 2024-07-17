@@ -13,8 +13,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getPage } from "@/lib/payload/page";
-import Head from "next/head";
-import { Icons } from "@/components/Icons";
 import { getHeader } from "@/lib/payload/header";
 import Sidebar from "@/components/Sidebar";
 
@@ -33,8 +31,6 @@ export default async function Page({ params: { slug } }: PageParams) {
 
   let parent = null;
 
-  console.log(page.breadcrumbs);
-
   if (page.breadcrumbs?.length > 0) {
     const header = await getHeader();
 
@@ -45,8 +41,6 @@ export default async function Page({ params: { slug } }: PageParams) {
         return false;
       }
     })[0];
-
-    header.primaryNavigation.navItems;
   }
 
   return (
