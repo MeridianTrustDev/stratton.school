@@ -3,7 +3,6 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-import Image from "next/image";
 import React from "react";
 
 export default function Hero({ slides }: any) {

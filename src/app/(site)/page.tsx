@@ -39,10 +39,6 @@ export default async function Home() {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=6`
   );
 
-  console.log(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/pages${stringifiedQuery}&depth=6`
-  );
-
   const page = (await response.json()).docs[0];
 
   if (!page) notFound();
