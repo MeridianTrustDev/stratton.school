@@ -6,9 +6,9 @@ export const getPage = async (slug: string) => {
       "tenant.name": {
         equals: "Stratton School",
       },
-      _status: {
-        equals: "published",
-      },
+      // _status: {
+      //   equals: "published",
+      // },
       slug: {
         equals: slug,
       },
