@@ -29,7 +29,6 @@ export default async function Page() {
     <div className="max-w-7xl pt-40  p-4 w-full flex flex-col md:justify-start gap-4 bg-white">
       <Head>
         <Link
-          prefetch={false}
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_BASE_URL}/news`}
           key="canonical"
