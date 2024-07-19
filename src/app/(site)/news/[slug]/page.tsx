@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { getNews } from "@/lib/payload/news";
 import Head from "next/head";
+import Link from "next/link";
 
 interface PageParams {
   params: { slug: string };
