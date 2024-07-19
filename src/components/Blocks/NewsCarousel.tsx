@@ -26,6 +26,7 @@ export default function NewsCarousel({ news }: any) {
               className="bg-[#D9B21D] basis-full md:basis-[49%] group overflow-hidden p-2"
             >
               <Link
+                prefetch={false}
                 href={`/news/${news.slug}`}
                 className="w-full flex items-center gap-2 h-full"
               >

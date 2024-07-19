@@ -28,6 +28,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
         <Popover open={isShowing}>
           <PopoverTrigger asChild>
             <Link
+              prefetch={false}
               style={{ backgroundColor: item.color }}
               className={cn(
                 isShowing ? "transition-all" : "text-white",
@@ -51,6 +52,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
 
                 return (
                   <Link
+                    prefetch={false}
                     key={child.id}
                     href={child.url || "#"}
                     onClick={() => setIsShowing(false)}
@@ -64,6 +66,7 @@ export default function SecondaryNavigationItem({ item }: { item: any }) {
         </Popover>
       ) : (
         <Link
+          prefetch={false}
           href={item.url || "#"}
           style={{ backgroundColor: item.color }}
           className="flex h-10 min-w-10 items-center justify-center px-2 py-2 cursor-pointer gap-2 text-sm font-semibold uppercase leading-6 text-white border-b-2 border-transparent transition-all group"

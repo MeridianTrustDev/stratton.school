@@ -12,6 +12,7 @@ export default function Tiles({ tiles }: any) {
 
         return (
           <Link
+            prefetch={false}
             key={tile.id}
             href={
               tile.target === "reference"

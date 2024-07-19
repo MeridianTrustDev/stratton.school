@@ -47,6 +47,7 @@ export default async function Events() {
           Upcoming Events
         </h2>
         <Link
+          prefetch={false}
           href="/events"
           className="flex uppercase text-[#4EBCC1] font-bold group"
         >

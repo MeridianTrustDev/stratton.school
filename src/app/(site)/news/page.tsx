@@ -28,7 +28,8 @@ export default async function Page() {
   return (
     <div className="max-w-7xl pt-40  p-4 w-full flex flex-col md:justify-start gap-4 bg-white">
       <Head>
-        <link
+        <Link
+          prefetch={false}
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_BASE_URL}/news`}
           key="canonical"
@@ -55,6 +56,7 @@ export default async function Page() {
                 className="bg-[#D9B21D] w-1/2 -ml-2 md:basis-1/3 group lg:basis-1/4 h-72 p-2 "
               >
                 <Link
+                  prefetch={false}
                   href={`/news/${news.slug}`}
                   className="w-full h-full flex flex-col items-center justify-between "
                 >

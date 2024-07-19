@@ -53,7 +53,7 @@ export default function SiteHeader({ header }: { header: any }) {
         aria-label="Global"
       >
         <div className="flex">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link prefetch={false} href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Stratton School</span>
             {header.logo && (
               <img

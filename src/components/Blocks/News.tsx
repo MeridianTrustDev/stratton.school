@@ -15,6 +15,7 @@ export default async function News() {
           Latest News
         </h2>
         <Link
+          prefetch={false}
           href="/news"
           className="flex uppercase text-[#D9B21D] font-bold group"
         >

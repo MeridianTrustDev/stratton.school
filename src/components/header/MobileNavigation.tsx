@@ -41,6 +41,7 @@ export default function MobileNavigation({
                         <>
                           <div className="flex w-full items-center justify-between rounded-lg text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
                             <Link
+                              prefetch={false}
                               className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
                               href={item.url || "#"}
                               onClick={() => setMobileMenuOpen(false)}
@@ -77,6 +78,7 @@ export default function MobileNavigation({
                                         <>
                                           <div className="flex pl-6 w-full items-center justify-between rounded-lg text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900">
                                             <Link
+                                              prefetch={false}
                                               className="w-full h-full rounded-lg p-2 text-left font-semibold leading-6"
                                               href={child.url || "#"}
                                               onClick={() =>
@@ -114,6 +116,7 @@ export default function MobileNavigation({
 
                                                   return (
                                                     <Link
+                                                      prefetch={false}
                                                       key={childChild.id}
                                                       onClick={() =>
                                                         setMobileMenuOpen(false)
@@ -137,6 +140,7 @@ export default function MobileNavigation({
 
                                 return (
                                   <Link
+                                    prefetch={false}
                                     onClick={() => setMobileMenuOpen(false)}
                                     href={child.url}
                                     className="flex w-full items-center justify-between rounded-lg py-4 pl-8 pr-3.5 text-base font-semibold leading-5 text-white transition-all hover:bg-neutral-900"
@@ -151,6 +155,7 @@ export default function MobileNavigation({
                     </Disclosure>
                   ) : (
                     <Link
+                      prefetch={false}
                       onClick={() => setMobileMenuOpen(false)}
                       href={item.url}
                       className="flex w-full items-center justify-between rounded-lg py-4 pl-3 pr-3.5 text-base font-semibold leading-7 text-white transition-all hover:bg-neutral-900"
@@ -171,6 +176,7 @@ export default function MobileNavigation({
 
               return (
                 <Link
+                  prefetch={false}
                   key={item.id}
                   onClick={() => setMobileMenuOpen(false)}
                   href={item.url}

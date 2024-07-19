@@ -64,6 +64,7 @@ export default async function Home() {
                 })
                 .map((house: any) => (
                   <Link
+                    prefetch={false}
                     key={house.id}
                     className="flex flex-col md:flex-row justify-end overflow-hidden md:overflow-visible items-center h-14 group md:gap-6 basis-[100%] md:h-14 md:py-4 md:px-8 max-w-[25%] relative"
                     style={{ backgroundColor: `${house.houseColour}` }}

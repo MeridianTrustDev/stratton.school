@@ -39,6 +39,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   return (
     <Link
+      prefetch={false}
       className={cn(className, "underline")}
       href={href || url || "#"}
       {...newTabProps}

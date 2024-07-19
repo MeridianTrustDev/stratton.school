@@ -26,6 +26,7 @@ export default function NavigationItem({ item }: { item: any }) {
         <Popover open={isShowing}>
           <PopoverTrigger asChild>
             <Link
+              prefetch={false}
               className={cn(
                 isShowing
                   ? "text-[#D9B21D] transition-all border-b-2 border-[#D9B21D]"
@@ -50,6 +51,7 @@ export default function NavigationItem({ item }: { item: any }) {
 
                 return (
                   <Link
+                    prefetch={false}
                     key={child.id}
                     href={child.url || "#"}
                     onClick={() => setIsShowing(false)}
@@ -63,6 +65,7 @@ export default function NavigationItem({ item }: { item: any }) {
         </Popover>
       ) : (
         <Link
+          prefetch={false}
           href={item.url || "#"}
           className="flex items-center cursor-pointer gap-x-1 text-lg font-bold uppercase leading-6 text-white border-b-2 border-transparent hover:text-[#D9B21D] transition-all hover:border-b-2 hover:border-[#D9B21D]"
         >

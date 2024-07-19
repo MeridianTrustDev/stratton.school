@@ -10,6 +10,7 @@ export default function Buttons({ buttons }: any) {
         {buttons.map((button: any, index: any) => {
           return (
             <Link
+              prefetch={false}
               key={button.id}
               href={
                 button.target === "reference"

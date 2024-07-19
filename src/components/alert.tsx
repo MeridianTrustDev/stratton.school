@@ -30,7 +30,11 @@ export default function Alert() {
           </DialogTitle>
           <DialogDescription className="text-center">
             Years 6, 7 and 8 will be joining us this week, more details{" "}
-            <Link className="underline font-semibold" href={"/starting-school"}>
+            <Link
+              prefetch={false}
+              className="underline font-semibold"
+              href={"/starting-school"}
+            >
               here
             </Link>
             <br />

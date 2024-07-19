@@ -20,6 +20,7 @@ export default function Sidebar({ parent, className }: any) {
           const url = navItemUrl(child);
           return (
             <Link
+              prefetch={false}
               href={url}
               key={child.id}
               className={cn(

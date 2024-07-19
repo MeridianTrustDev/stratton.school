@@ -28,6 +28,7 @@ export default function MediaAndText(props: any) {
 
         {props.readMore?.showReadMore && (
           <Link
+            prefetch={false}
             className={buttonVariants({
               variant: "default",
               size: "sm",

@@ -35,6 +35,7 @@ export default async function File({ mode, category, files }: any) {
               />
             )}
             <Link
+              prefetch={false}
               href={
                 mode === "byCategory"
                   ? file.url

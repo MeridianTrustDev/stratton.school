@@ -35,6 +35,7 @@ export default async function Footer() {
               return (
                 <li key={link.id}>
                   <Link
+                    prefetch={false}
                     href={
                       link.type === "custom"
                         ? link.url

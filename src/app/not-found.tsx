@@ -11,7 +11,11 @@ export default function NotFound() {
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-2xl font-medium">Could not find requested page</p>
-        <Link className={cn(buttonVariants({ variant: "secondary" }))} href="/">
+        <Link
+          prefetch={false}
+          className={cn(buttonVariants({ variant: "secondary" }))}
+          href="/"
+        >
           Return Home
         </Link>
       </div>

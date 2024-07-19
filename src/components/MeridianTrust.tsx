@@ -16,6 +16,7 @@ export default function MeridianTrust() {
               </h2>
               <Separator className="h-[5px] bg-[#004e73]" />
               <Link
+                prefetch={false}
                 href="https://meridiantrust.co.uk"
                 className="text-[#004e73] font-bold text-sm uppercase flex gap-2 items-center group"
               >
